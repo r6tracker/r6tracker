@@ -1,0 +1,34 @@
+---
+import { DEFAULT_LOCALE } from "@/i18n";
+import { getEntry } from "astro:content";
+import { getCollection } from "astro:content";
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { getFileNameFromPath,getLangFromPath } from "@/common";
+
+const currentLocale = Astro.currentLocale || DEFAULT_LOCALE;
+
+const blog = await getCollection("blog");
+
+const posts = blog
+    .filter((post) => getLangFromPath(post.filePath) === currentLocale)
+    .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
+---
+<div class="max-w-2xl mx-auto">
+    {posts.map((post) => (
+        <li class="flex flex-col md:flex-row md:items-center justify-between gap-2 md:gap-4 py-2">
+            <div class="min-w-0 hover:underline underline-offset-8 decoration-blue-400 decoration-2">
+                <a
+                    href={getRelativeLocaleUrl(currentLocale, `/blog/${getFileNameFromPath(post.filePath) ?? ""}`)}
+                    class="block font-semibold text-gray-900 "
+                    title={post.data.title}
+                >
+                    {post.data.title}
+
+                </a>
+            </div>
+            <span class="shrink-0 text-gray-400 text-sm md:text-xs tracking-wide font-mono">
+                {new Date(post.data.pubDate).toLocaleDateString()}
+            </span>
+        </li>
+    ))}
+</div>

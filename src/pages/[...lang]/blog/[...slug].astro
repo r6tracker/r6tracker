@@ -1,0 +1,42 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content";
+import { render } from "astro:content";
+import { DEFAULT_LOCALE_SETTING } from "@/locales";
+import Layout from "@/layouts/BaseLayout.astro";
+import { getFileNameFromPath, getLangFromPath } from "@/common";
+
+
+export async function getStaticPaths() {
+	const posts: CollectionEntry<"blog">[] = (await getCollection("blog"));
+
+	const paths = posts.flatMap((post) => {
+
+		if(getLangFromPath(post.filePath) !== DEFAULT_LOCALE_SETTING) {
+			return [{
+				params: { slug: getFileNameFromPath(post.filePath), lang: getLangFromPath(post.filePath) },
+				props: post,
+			}];
+		}
+
+		return [{
+			params: { slug: getFileNameFromPath(post.filePath) },
+			props: post,
+		}];
+	});
+
+	return paths;
+}
+
+type Props = CollectionEntry<"blog">;
+
+const post = Astro.props;
+const { Content } = await render(post);
+
+---
+
+<Layout>
+	<h1 class="text-lg font-bold text-center mb-4">{post.data.title}</h1>
+	<article class="prose lg:prose-sm mx-auto ">
+		<Content />
+	</article>
+</Layout>

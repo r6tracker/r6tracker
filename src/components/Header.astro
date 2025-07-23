@@ -1,0 +1,36 @@
+---
+import { SITE_TITLE } from '../consts';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { useTranslations, type Lang } from '@/i18n';
+import { DEFAULT_LOCALE_SETTING, LOCALES_SETTING } from '@/locales';
+
+const t = useTranslations(Astro.currentLocale as Lang);
+const locale = Astro.currentLocale || DEFAULT_LOCALE_SETTING;
+const path = Astro.url.pathname.replace(/^\/[a-z]{2}(?:-[A-Z]{2})?\//, '/')
+---
+
+<header class="border-b border-gray-100 shadow-sm">
+	<nav class="max-w-5xl mx-auto flex items-center justify-between py-4 px-4 md:px-8">
+		<div class="text-xl font-bold tracking-tight text-blue-700">
+			<a href={getRelativeLocaleUrl(locale, "/")} class="hover:opacity-80 transition-colors duration-200">
+				{t(SITE_TITLE)}
+			</a>
+		</div>
+		<ul class="flex space-x-1 ml-4">
+			{Object.entries(LOCALES_SETTING).map(lang => (
+				<li>
+					<a
+						href={getRelativeLocaleUrl(lang[0], path)}
+						class={`px-2 py-1 rounded-md text-xs border transition-colors duration-200 ${
+							locale === lang[0]
+								? 'border-blue-600 bg-blue-50 text-blue-700'
+								: 'border-transparent text-gray-500 hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700'
+						}`}
+					>
+						{lang[1].label}
+					</a>
+				</li>
+			))}
+		</ul>
+	</nav>
+</header>

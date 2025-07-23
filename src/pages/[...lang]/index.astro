@@ -1,0 +1,41 @@
+---
+import { DEFAULT_LOCALE_SETTING, LOCALES_SETTING } from "@/locales";
+import BlogList from "@/components/BlogList.astro";
+import { useTranslations, type Lang } from "@/i18n";
+import Layout from "@/layouts/BaseLayout.astro";
+import { undefined } from "astro:schema";
+
+const t = useTranslations(Astro.currentLocale as Lang);
+
+const title = {
+	en: "my blog",
+	zh: "我的博客",
+};
+
+export const getStaticPaths = (async () => {
+	const paths = Object.keys(LOCALES_SETTING).map((lang) => {
+		if (lang !== DEFAULT_LOCALE_SETTING) {
+			return {
+				params: { lang: lang },
+			};
+		} else {
+			return { params:{lang:undefined} };
+		}
+	});
+
+	return paths;
+});
+---
+
+<Layout title={title}>
+	<p style="text-align:center; margin: 2rem 0; color: #888;">
+		{
+			t({
+				zh: "记录一些学习和生活中的点滴",
+				en: "Record some bits and pieces of learning and life",
+			})
+		}
+	</p>
+
+	<BlogList />
+</Layout>
