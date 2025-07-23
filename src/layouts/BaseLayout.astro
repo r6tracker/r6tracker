@@ -18,7 +18,7 @@ const { description=SITE_DESCRIPTION } = Astro.props ;
     <head>
         <BaseHead title={t(title)} description={t(description)} />
     </head>
-    <body>
+    <body class="bg-gray-900 text-white">
         <Header />
         <main class="container mx-auto px-4 py-8">
             <slot></slot>
