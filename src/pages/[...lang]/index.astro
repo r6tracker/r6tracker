@@ -5,55 +5,70 @@ import Layout from "@/layouts/BaseLayout.astro";
 
 const t = useTranslations(Astro.currentLocale as Lang);
 
+export const getStaticPaths = async () => {
+    const paths = Object.keys(LOCALES_SETTING).map((lang) => {
+        if (lang !== DEFAULT_LOCALE_SETTING) {
+            return {
+                params: { lang: lang },
+            };
+        } else {
+            return { params: { lang: undefined } };
+        }
+    });
 
-export const getStaticPaths = (async () => {
-	const paths = Object.keys(LOCALES_SETTING).map((lang) => {
-		if (lang !== DEFAULT_LOCALE_SETTING) {
-			return {
-				params: { lang: lang },
-			};
-		} else {
-			return { params:{lang:undefined} };
-		}
-	});
-
-	return paths;
-});
+    return paths;
+};
 ---
+
 <Layout>
     <!-- Hero Section -->
-    <section class="r6-tracker-hero py-20">
+    <section id="track-button" class="r6-tracker-hero py-20">
         <div class="container mx-auto px-4 text-center">
             <h1 class="text-5xl font-bold mb-6">
-                {t({
-                    en: "R6 Tracker - Ultimate Rainbow Six Siege Performance Monitor",
-                    it: "R6 Tracker - Monitor delle prestazioni definitivo per Rainbow Six Siege",
-                    de: "R6 Tracker – Ultimatives Rainbow Six Siege Leistungsmonitoring"
-                })}
+                {
+                    t({
+                        en: "R6 Tracker - Ultimate Rainbow Six Siege Performance Monitor",
+                        it: "R6 Tracker - Monitor delle prestazioni definitivo per Rainbow Six Siege",
+                        de: "R6 Tracker – Ultimatives RainFbow Six Siege Leistungsmonitoring",
+                    })
+                }
             </h1>
             <p class="text-xl mb-8 max-w-3xl mx-auto">
-                {t({
-                    en: "Track your Rainbow Six Siege stats in real-time. Monitor your K/D ratio, win rate, and climb the global R6 Tracker leaderboard.",
-                    it: "Monitora le tue statistiche di Rainbow Six Siege in tempo reale. Tieni traccia del tuo rapporto K/D, percentuale di vittorie e scala la classifica globale di R6 Tracker.",
-                    de: "Verfolge deine Rainbow Six Siege Statistiken in Echtzeit. Überwache dein K/D-Verhältnis, deine Gewinnrate und steige in der globalen R6 Tracker Rangliste auf."
-                })}
+                {
+                    t({
+                        en: "Track your Rainbow Six Siege stats in real-time. Monitor your K/D ratio, win rate, and climb the global R6 Tracker leaderboard.",
+                        it: "Monitora le tue statistiche di Rainbow Six Siege in tempo reale. Tieni traccia del tuo rapporto K/D, percentuale di vittorie e scala la classifica globale di R6 Tracker.",
+                        de: "Verfolge deine Rainbow Six Siege Statistiken in Echtzeit. Überwache dein K/D-Verhältnis, deine Gewinnrate und steige in der globalen R6 Tracker Rangliste auf.",
+                    })
+                }
             </p>
             <div class="flex justify-center space-x-4">
+                <select
+                    class="px-4 py-3 rounded-lg bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-red-500"
+                >
+                    <option value="ubisoft">Ubisoft</option>
+                    <option value="playstation">PlayStation</option>
+                    <option value="xbox">Xbox</option>
+                </select>
                 <input
                     type="text"
                     placeholder={t({
                         en: "Enter your R6 username",
                         it: "Inserisci il tuo nome utente R6",
-                        de: "Gib deinen R6 Benutzernamen ein"
+                        de: "Gib deinen R6 Benutzernamen ein",
                     })}
                     class="px-6 py-3 rounded-lg bg-gray-700 text-white w-80 focus:outline-none focus:ring-2 focus:ring-red-500"
+                />
+                <button
+                    class="bg-red-600 hover:bg-red-700 px-8 py-3 rounded-lg font-bold transition-colors"
                 >
-                <button class="bg-red-600 hover:bg-red-700 px-8 py-3 rounded-lg font-bold transition-colors">
-                    {t({
-                        en: "Track R6 Stats",
-                        it: "Monitora le statistiche R6",
-                        de: "R6 Statistiken verfolgen"
-                    })}
+                    {
+                        t({
+                            en: "Track R6 Stats",
+                            it: "Monitora le statistiche R6",
+                            de: "R6 Statistiken verfolgen",
+                        })
+                    }
                 </button>
             </div>
         </div>
@@ -62,62 +77,82 @@ export const getStaticPaths = (async () => {
     <section class="py-16 bg-gray-800">
         <div class="container mx-auto px-4">
             <h2 class="text-4xl font-bold text-center mb-12">
-                {t({
-                    en: "Why Choose Our R6 Tracker?",
-                    it: "Perché scegliere il nostro R6 Tracker?",
-                    de: "Warum unseren R6 Tracker wählen?"
-                })}
+                {
+                    t({
+                        en: "Why Choose Our R6 Tracker?",
+                        it: "Perché scegliere il nostro R6 Tracker?",
+                        de: "Warum unseren R6 Tracker wählen?",
+                    })
+                }
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="stats-card bg-gray-700 p-8 rounded-xl transition-all duration-300">
+                <div
+                    class="stats-card bg-gray-700 p-8 rounded-xl transition-all duration-300"
+                >
                     <div class="text-red-500 text-4xl mb-4">📊</div>
                     <h3 class="text-2xl font-bold mb-3">
-                        {t({
-                            en: "Real-Time R6 Stats",
-                            it: "Statistiche R6 in tempo reale",
-                            de: "Echtzeit-R6-Statistiken"
-                        })}
+                        {
+                            t({
+                                en: "Real-Time R6 Stats",
+                                it: "Statistiche R6 in tempo reale",
+                                de: "Echtzeit-R6-Statistiken",
+                            })
+                        }
                     </h3>
                     <p class="text-gray-300">
-                        {t({
-                            en: "Get live updates on your Rainbow Six Siege performance metrics with our advanced R6 Tracker system.",
-                            it: "Ricevi aggiornamenti in tempo reale sulle tue prestazioni in Rainbow Six Siege con il nostro avanzato sistema R6 Tracker.",
-                            de: "Erhalte Live-Updates zu deinen Rainbow Six Siege Leistungsdaten mit unserem fortschrittlichen R6 Tracker."
-                        })}
+                        {
+                            t({
+                                en: "Get live updates on your Rainbow Six Siege performance metrics with our advanced R6 Tracker system.",
+                                it: "Ricevi aggiornamenti in tempo reale sulle tue prestazioni in Rainbow Six Siege con il nostro avanzato sistema R6 Tracker.",
+                                de: "Erhalte Live-Updates zu deinen Rainbow Six Siege Leistungsdaten mit unserem fortschrittlichen R6 Tracker.",
+                            })
+                        }
                     </p>
                 </div>
-                <div class="stats-card bg-gray-700 p-8 rounded-xl transition-all duration-300">
+                <div
+                    class="stats-card bg-gray-700 p-8 rounded-xl transition-all duration-300"
+                >
                     <div class="text-red-500 text-4xl mb-4">🏆</div>
                     <h3 class="text-2xl font-bold mb-3">
-                        {t({
-                            en: "Global Leaderboard",
-                            it: "Classifica globale",
-                            de: "Globale Bestenliste"
-                        })}
+                        {
+                            t({
+                                en: "Global Leaderboard",
+                                it: "Classifica globale",
+                                de: "Globale Bestenliste",
+                            })
+                        }
                     </h3>
                     <p class="text-gray-300">
-                        {t({
-                            en: "Compare your R6 Tracker stats with players worldwide and see where you rank in the competitive scene.",
-                            it: "Confronta le tue statistiche R6 Tracker con giocatori di tutto il mondo e scopri la tua posizione nella scena competitiva.",
-                            de: "Vergleiche deine R6 Tracker Statistiken mit Spielern weltweit und sieh, wo du im Wettbewerb stehst."
-                        })}
+                        {
+                            t({
+                                en: "Compare your R6 Tracker stats with players worldwide and see where you rank in the competitive scene.",
+                                it: "Confronta le tue statistiche R6 Tracker con giocatori di tutto il mondo e scopri la tua posizione nella scena competitiva.",
+                                de: "Vergleiche deine R6 Tracker Statistiken mit Spielern weltweit und sieh, wo du im Wettbewerb stehst.",
+                            })
+                        }
                     </p>
                 </div>
-                <div class="stats-card bg-gray-700 p-8 rounded-xl transition-all duration-300">
+                <div
+                    class="stats-card bg-gray-700 p-8 rounded-xl transition-all duration-300"
+                >
                     <div class="text-red-500 text-4xl mb-4">📈</div>
                     <h3 class="text-2xl font-bold mb-3">
-                        {t({
-                            en: "Performance Analytics",
-                            it: "Analisi delle prestazioni",
-                            de: "Leistungsanalysen"
-                        })}
+                        {
+                            t({
+                                en: "Performance Analytics",
+                                it: "Analisi delle prestazioni",
+                                de: "Leistungsanalysen",
+                            })
+                        }
                     </h3>
                     <p class="text-gray-300">
-                        {t({
-                            en: "Advanced R6 Tracker analytics help you identify strengths and weaknesses in your Rainbow Six gameplay.",
-                            it: "Le analisi avanzate di R6 Tracker ti aiutano a individuare punti di forza e debolezze nel tuo gameplay di Rainbow Six.",
-                            de: "Fortschrittliche R6 Tracker Analysen helfen dir, Stärken und Schwächen in deinem Rainbow Six Gameplay zu erkennen."
-                        })}
+                        {
+                            t({
+                                en: "Advanced R6 Tracker analytics help you identify strengths and weaknesses in your Rainbow Six gameplay.",
+                                it: "Le analisi avanzate di R6 Tracker ti aiutano a individuare punti di forza e debolezze nel tuo gameplay di Rainbow Six.",
+                                de: "Fortschrittliche R6 Tracker Analysen helfen dir, Stärken und Schwächen in deinem Rainbow Six Gameplay zu erkennen.",
+                            })
+                        }
                     </p>
                 </div>
             </div>
@@ -128,51 +163,63 @@ export const getStaticPaths = (async () => {
     <section class="py-16">
         <div class="container mx-auto px-4">
             <h2 class="text-4xl font-bold text-center mb-12">
-                {t({
-                    en: "Your R6 Tracker Performance Overview",
-                    it: "Panoramica delle tue prestazioni su R6 Tracker",
-                    de: "Deine R6 Tracker Leistungsübersicht"
-                })}
+                {
+                    t({
+                        en: "Your R6 Tracker Performance Overview",
+                        it: "Panoramica delle tue prestazioni su R6 Tracker",
+                        de: "Deine R6 Tracker Leistungsübersicht",
+                    })
+                }
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
                 <div class="bg-gray-800 p-6 rounded-xl text-center">
                     <div class="text-3xl font-bold text-red-500 mb-2">2.45</div>
                     <div class="text-gray-400">
-                        {t({
-                            en: "K/D Ratio",
-                            it: "Rapporto K/D",
-                            de: "K/D Verhältnis"
-                        })}
+                        {
+                            t({
+                                en: "K/D Ratio",
+                                it: "Rapporto K/D",
+                                de: "K/D Verhältnis",
+                            })
+                        }
                     </div>
                 </div>
                 <div class="bg-gray-800 p-6 rounded-xl text-center">
                     <div class="text-3xl font-bold text-red-500 mb-2">67%</div>
                     <div class="text-gray-400">
-                        {t({
-                            en: "Win Rate",
-                            it: "Percentuale di vittorie",
-                            de: "Gewinnrate"
-                        })}
+                        {
+                            t({
+                                en: "Win Rate",
+                                it: "Percentuale di vittorie",
+                                de: "Gewinnrate",
+                            })
+                        }
                     </div>
                 </div>
                 <div class="bg-gray-800 p-6 rounded-xl text-center">
-                    <div class="text-3xl font-bold text-red-500 mb-2">1,250</div>
+                    <div class="text-3xl font-bold text-red-500 mb-2">
+                        1,250
+                    </div>
                     <div class="text-gray-400">
-                        {t({
-                            en: "Hours Played",
-                            it: "Ore giocate",
-                            de: "Gespielte Stunden"
-                        })}
+                        {
+                            t({
+                                en: "Hours Played",
+                                it: "Ore giocate",
+                                de: "Gespielte Stunden",
+                            })
+                        }
                     </div>
                 </div>
                 <div class="bg-gray-800 p-6 rounded-xl text-center">
                     <div class="text-3xl font-bold text-red-500 mb-2">#45</div>
                     <div class="text-gray-400">
-                        {t({
-                            en: "Region Rank",
-                            it: "Posizione regionale",
-                            de: "Regionale Platzierung"
-                        })}
+                        {
+                            t({
+                                en: "Region Rank",
+                                it: "Posizione regionale",
+                                de: "Regionale Platzierung",
+                            })
+                        }
                     </div>
                 </div>
             </div>
@@ -183,73 +230,93 @@ export const getStaticPaths = (async () => {
     <section class="py-16 bg-gray-800">
         <div class="container mx-auto px-4">
             <h2 class="text-4xl font-bold text-center mb-12">
-                {t({
-                    en: "How R6 Tracker Works",
-                    it: "Come funziona R6 Tracker",
-                    de: "Wie funktioniert R6 Tracker"
-                })}
+                {
+                    t({
+                        en: "How R6 Tracker Works",
+                        it: "Come funziona R6 Tracker",
+                        de: "Wie funktioniert R6 Tracker",
+                    })
+                }
             </h2>
             <div class="max-w-4xl mx-auto">
                 <div class="flex items-start mb-12">
-                    <div class="bg-red-600 rounded-full w-12 h-12 flex items-center justify-center mr-6 flex-shrink-0">
+                    <div
+                        class="bg-red-600 rounded-full w-12 h-12 flex items-center justify-center mr-6 flex-shrink-0"
+                    >
                         <span class="font-bold">1</span>
                     </div>
                     <div>
                         <h3 class="text-2xl font-bold mb-3">
-                            {t({
-                                en: "Enter Your R6 Username",
-                                it: "Inserisci il tuo nome utente R6",
-                                de: "Gib deinen R6 Benutzernamen ein"
-                            })}
+                            {
+                                t({
+                                    en: "Enter Your R6 Username",
+                                    it: "Inserisci il tuo nome utente R6",
+                                    de: "Gib deinen R6 Benutzernamen ein",
+                                })
+                            }
                         </h3>
                         <p class="text-gray-300">
-                            {t({
-                                en: "Simply input your Rainbow Six Siege username into our R6 Tracker system to begin monitoring your performance statistics.",
-                                it: "Inserisci semplicemente il tuo nome utente Rainbow Six Siege nel nostro sistema R6 Tracker per iniziare a monitorare le tue statistiche di prestazione.",
-                                de: "Gib einfach deinen Rainbow Six Siege Benutzernamen in unser R6 Tracker System ein, um deine Leistungsstatistiken zu überwachen."
-                            })}
+                            {
+                                t({
+                                    en: "Simply input your Rainbow Six Siege username into our R6 Tracker system to begin monitoring your performance statistics.",
+                                    it: "Inserisci semplicemente il tuo nome utente Rainbow Six Siege nel nostro sistema R6 Tracker per iniziare a monitorare le tue statistiche di prestazione.",
+                                    de: "Gib einfach deinen Rainbow Six Siege Benutzernamen in unser R6 Tracker System ein, um deine Leistungsstatistiken zu überwachen.",
+                                })
+                            }
                         </p>
                     </div>
                 </div>
                 <div class="flex items-start mb-12">
-                    <div class="bg-red-600 rounded-full w-12 h-12 flex items-center justify-center mr-6 flex-shrink-0">
+                    <div
+                        class="bg-red-600 rounded-full w-12 h-12 flex items-center justify-center mr-6 flex-shrink-0"
+                    >
                         <span class="font-bold">2</span>
                     </div>
                     <div>
                         <h3 class="text-2xl font-bold mb-3">
-                            {t({
-                                en: "Analyze Your R6 Stats",
-                                it: "Analizza le tue statistiche R6",
-                                de: "Analysiere deine R6 Statistiken"
-                            })}
+                            {
+                                t({
+                                    en: "Analyze Your R6 Stats",
+                                    it: "Analizza le tue statistiche R6",
+                                    de: "Analysiere deine R6 Statistiken",
+                                })
+                            }
                         </h3>
                         <p class="text-gray-300">
-                            {t({
-                                en: "Our advanced R6 Tracker aggregates all your Rainbow Six Siege match data to provide comprehensive performance insights.",
-                                it: "Il nostro avanzato R6 Tracker aggrega tutti i dati delle tue partite Rainbow Six Siege per fornire approfondimenti completi sulle prestazioni.",
-                                de: "Unser fortschrittlicher R6 Tracker sammelt alle deine Rainbow Six Siege Spieldaten, um umfassende Leistungsanalysen zu bieten."
-                            })}
+                            {
+                                t({
+                                    en: "Our advanced R6 Tracker aggregates all your Rainbow Six Siege match data to provide comprehensive performance insights.",
+                                    it: "Il nostro avanzato R6 Tracker aggrega tutti i dati delle tue partite Rainbow Six Siege per fornire approfondimenti completi sulle prestazioni.",
+                                    de: "Unser fortschrittlicher R6 Tracker sammelt alle deine Rainbow Six Siege Spieldaten, um umfassende Leistungsanalysen zu bieten.",
+                                })
+                            }
                         </p>
                     </div>
                 </div>
                 <div class="flex items-start">
-                    <div class="bg-red-600 rounded-full w-12 h-12 flex items-center justify-center mr-6 flex-shrink-0">
+                    <div
+                        class="bg-red-600 rounded-full w-12 h-12 flex items-center justify-center mr-6 flex-shrink-0"
+                    >
                         <span class="font-bold">3</span>
                     </div>
                     <div>
                         <h3 class="text-2xl font-bold mb-3">
-                            {t({
-                                en: "Improve Your Game",
-                                it: "Migliora il tuo gioco",
-                                de: "Verbessere dein Spiel"
-                            })}
+                            {
+                                t({
+                                    en: "Improve Your Game",
+                                    it: "Migliora il tuo gioco",
+                                    de: "Verbessere dein Spiel",
+                                })
+                            }
                         </h3>
                         <p class="text-gray-300">
-                            {t({
-                                en: "Use the data from our R6 Tracker to identify areas for improvement and track your progress over time in Rainbow Six Siege.",
-                                it: "Utilizza i dati del nostro R6 Tracker per individuare aree di miglioramento e monitorare i tuoi progressi nel tempo in Rainbow Six Siege.",
-                                de: "Nutze die Daten unseres R6 Trackers, um Verbesserungsmöglichkeiten zu erkennen und deinen Fortschritt in Rainbow Six Siege zu verfolgen."
-                            })}
+                            {
+                                t({
+                                    en: "Use the data from our R6 Tracker to identify areas for improvement and track your progress over time in Rainbow Six Siege.",
+                                    it: "Utilizza i dati del nostro R6 Tracker per individuare aree di miglioramento e monitorare i tuoi progressi nel tempo in Rainbow Six Siege.",
+                                    de: "Nutze die Daten unseres R6 Trackers, um Verbesserungsmöglichkeiten zu erkennen und deinen Fortschritt in Rainbow Six Siege zu verfolgen.",
+                                })
+                            }
                         </p>
                     </div>
                 </div>
@@ -261,26 +328,48 @@ export const getStaticPaths = (async () => {
     <section class="py-20 bg-gradient-to-r from-red-700 to-red-900">
         <div class="container mx-auto px-4 text-center">
             <h2 class="text-4xl font-bold mb-6">
-                {t({
-                    en: "Start Tracking Your R6 Performance Today",
-                    it: "Inizia a monitorare le tue prestazioni R6 oggi",
-                    de: "Beginne noch heute mit dem Tracking deiner R6 Leistung"
-                })}
+                {
+                    t({
+                        en: "Start Tracking Your R6 Performance Today",
+                        it: "Inizia a monitorare le tue prestazioni R6 oggi",
+                        de: "Beginne noch heute mit dem Tracking deiner R6 Leistung",
+                    })
+                }
             </h2>
             <p class="text-xl mb-8 max-w-2xl mx-auto">
-                {t({
-                    en: "Join thousands of Rainbow Six Siege players using our R6 Tracker to monitor their stats and climb the competitive ranks.",
-                    it: "Unisciti a migliaia di giocatori di Rainbow Six Siege che utilizzano il nostro R6 Tracker per monitorare le loro statistiche e scalare le classifiche competitive.",
-                    de: "Schließe dich tausenden Rainbow Six Siege Spielern an, die unseren R6 Tracker nutzen, um ihre Statistiken zu überwachen und in den Wettbewerbsrängen aufzusteigen."
-                })}
+                {
+                    t({
+                        en: "Join thousands of Rainbow Six Siege players using our R6 Tracker to monitor their stats and climb the competitive ranks.",
+                        it: "Unisciti a migliaia di giocatori di Rainbow Six Siege che utilizzano il nostro R6 Tracker per monitorare le loro statistiche e scalare le classifiche competitive.",
+                        de: "Schließe dich tausenden Rainbow Six Siege Spielern an, die unseren R6 Tracker nutzen, um ihre Statistiken zu überwachen und in den Wettbewerbsrängen aufzusteigen.",
+                    })
+                }
             </p>
-            <button class="bg-white text-red-700 hover:bg-gray-100 px-8 py-4 rounded-lg font-bold text-lg transition-colors">
-                {t({
-                    en: "Get Free R6 Tracker Access",
-                    it: "Ottieni l'accesso gratuito a R6 Tracker",
-                    de: "Erhalte kostenlosen Zugang zum R6 Tracker"
-                })}
-            </button>
+            <a href="#track-button" class="pointer">
+                <button
+                    class="bg-white text-red-700 hover:bg-gray-100 px-8 py-4 rounded-lg font-bold text-lg transition-colors"
+                >
+                    {
+                        t({
+                            en: "Get Free R6 Tracker Access",
+                            it: "Ottieni l'accesso gratuito a R6 Tracker",
+                            de: "Erhalte kostenlosen Zugang zum R6 Tracker",
+                        })
+                    }
+                </button>
+            </a>
         </div>
     </section>
+    
+    <script is:inline>
+        document.querySelector('#track-button button').addEventListener('click', function () {
+            const platform = document.querySelector('#track-button select').value;
+            const username = document.querySelector('#track-button input[type="text"]').value.trim();
+            if (username) {
+                let platformPath = platform === 'playstation' ? 'psn' : platform === 'xbox' ? 'xbl' : 'uplay';
+                window.location.href = `https://r6.tracker.network/r6siege/profile/${platformPath}/${encodeURIComponent(username)}/overview`;
+            }
+        });
+
+    </script>
 </Layout>
