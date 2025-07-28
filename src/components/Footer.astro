@@ -1,122 +1,50 @@
 ---
 import { useTranslations, type Lang } from "@/i18n";
-import { date } from "astro:schema";
+import { DEFAULT_LOCALE_SETTING } from "@/locales";
+import { getRelativeLocaleUrl } from "astro:i18n";
+const locale = Astro.currentLocale || DEFAULT_LOCALE_SETTING;
 const t = useTranslations(Astro.currentLocale as Lang);
 const today = new Date();
-
 ---
 
-        <!-- Footer -->
-        <footer class="bg-gray-800 py-12">
-                <div class="container mx-auto px-4">
-                        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                                <div>
-                                        <div class="flex items-center space-x-2 mb-4">
-                                                <div class="bg-red-600 w-8 h-8 rounded-full flex items-center justify-center">
-                                                        <span class="font-bold">R6</span>
-                                                </div>
-                                                <h3 class="text-xl font-bold">R6 Tracker</h3>
-                                        </div>
-                                        <p class="text-gray-400">{t({
-                                                en: "The ultimate Rainbow Six Siege stats tracker for competitive players worldwide.",
-                                                it: "Il miglior tracker di statistiche Rainbow Six Siege per giocatori competitivi in tutto il mondo.",
-                                                de: "Der ultimative Rainbow Six Siege Statistik-Tracker für wettbewerbsorientierte Spieler weltweit."
-                                        })}</p>
+<footer class="bg-gray-800 py-8">
+        <div class="container mx-auto px-4">
+                <div class="flex flex-col md:flex-row items-center justify-between">
+                        <div class="flex items-center space-x-2 mb-4 md:mb-0">
+                                <div class="bg-red-600 w-8 h-8 rounded-full flex items-center justify-center">
+                                        <span class="font-bold text-white">R6</span>
                                 </div>
-                                <div>
-                                        <h4 class="text-lg font-bold mb-4">{t({
-                                                en: "R6 Tracker Features",
-                                                it: "Funzionalità di R6 Tracker",
-                                                de: "R6 Tracker Funktionen"
-                                        })}</h4>
-                                        <ul class="space-y-2 text-gray-400">
-                                                <li><a href="#" class="hover:text-white transition-colors">{t({
-                                                        en: "Real-Time Stats",
-                                                        it: "Statistiche in tempo reale",
-                                                        de: "Echtzeit-Statistiken"
-                                                })}</a></li>
-                                                <li><a href="#" class="hover:text-white transition-colors">{t({
-                                                        en: "Performance Analytics",
-                                                        it: "Analisi delle prestazioni",
-                                                        de: "Leistungsanalysen"
-                                                })}</a></li>
-                                                <li><a href="#" class="hover:text-white transition-colors">{t({
-                                                        en: "Global Leaderboard",
-                                                        it: "Classifica globale",
-                                                        de: "Globale Bestenliste"
-                                                })}</a></li>
-                                                <li><a href="#" class="hover:text-white transition-colors">{t({
-                                                        en: "Operator Stats",
-                                                        it: "Statistiche degli operatori",
-                                                        de: "Operatoren-Statistiken"
-                                                })}</a></li>
-                                        </ul>
-                                </div>
-                                <div>
-                                        <h4 class="text-lg font-bold mb-4">{t({
-                                                en: "Rainbow Six Resources",
-                                                it: "Risorse Rainbow Six",
-                                                de: "Rainbow Six Ressourcen"
-                                        })}</h4>
-                                        <ul class="space-y-2 text-gray-400">
-                                                <li><a href="#" class="hover:text-white transition-colors">{t({
-                                                        en: "R6 Siege Updates",
-                                                        it: "Aggiornamenti R6 Siege",
-                                                        de: "R6 Siege Updates"
-                                                })}</a></li>
-                                                <li><a href="#" class="hover:text-white transition-colors">{t({
-                                                        en: "Operator Guides",
-                                                        it: "Guide agli operatori",
-                                                        de: "Operatoren-Guides"
-                                                })}</a></li>
-                                                <li><a href="#" class="hover:text-white transition-colors">{t({
-                                                        en: "Strategy Tips",
-                                                        it: "Consigli strategici",
-                                                        de: "Strategie-Tipps"
-                                                })}</a></li>
-                                                <li><a href="#" class="hover:text-white transition-colors">{t({
-                                                        en: "Community Forums",
-                                                        it: "Forum della comunità",
-                                                        de: "Community-Foren"
-                                                })}</a></li>
-                                        </ul>
-                                </div>
-                                <div>
-                                        <h4 class="text-lg font-bold mb-4">{t({
-                                                en: "Legal",
-                                                it: "Legale",
-                                                de: "Rechtliches"
-                                        })}</h4>
-                                        <ul class="space-y-2 text-gray-400">
-                                                <li><a href="#" class="hover:text-white transition-colors">{t({
+                                <h3 class="text-xl font-bold text-white">R6 Tracker</h3>
+                        </div>
+                        <ul class="flex space-x-6 text-gray-400">
+                                <li>
+                                        <a href="/privacy" class="hover:text-white transition-colors">
+                                                {t({
                                                         en: "Privacy Policy",
                                                         it: "Informativa sulla privacy",
                                                         de: "Datenschutzrichtlinie"
-                                                })}</a></li>
-                                                <li><a href="#" class="hover:text-white transition-colors">{t({
+                                                })}
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="/terms" class="hover:text-white transition-colors">
+                                                {t({
                                                         en: "Terms of Service",
                                                         it: "Termini di servizio",
                                                         de: "Nutzungsbedingungen"
-                                                })}</a></li>
-                                                <li><a href="#" class="hover:text-white transition-colors">{t({
-                                                        en: "Disclaimer",
-                                                        it: "Disclaimer",
-                                                        de: "Haftungsausschluss"
-                                                })}</a></li>
-                                                <li><a href="#" class="hover:text-white transition-colors">{t({
-                                                        en: "Contact Us",
-                                                        it: "Contattaci",
-                                                        de: "Kontakt"
-                                                })}</a></li>
-                                        </ul>
-                                </div>
-                        </div>
-                        <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-500">
-                                <p>&copy; {today.getFullYear()} R6 Tracker. {t({
-                                        en: "This website is not affiliated with Ubisoft or Rainbow Six Siege. All game names, images, and logos are property of their respective owners.",
-                                        it: "Questo sito non è affiliato con Ubisoft o Rainbow Six Siege. Tutti i nomi dei giochi, le immagini e i loghi sono di proprietà dei rispettivi proprietari.",
-                                        de: "Diese Website ist nicht mit Ubisoft oder Rainbow Six Siege verbunden. Alle Spielnamen, Bilder und Logos sind Eigentum ihrer jeweiligen Besitzer."
-                                })}</p>
-                        </div>
+                                                })}
+                                        </a>
+                                </li>
+                        </ul>
                 </div>
-        </footer>
+                <div class="border-t border-gray-700 mt-6 pt-4 text-center text-gray-500 text-sm">
+                        <p>
+                                &copy; {today.getFullYear()} R6 Tracker. {t({
+                                        en: "This website is not affiliated with Ubisoft or Rainbow Six Siege.",
+                                        it: "Questo sito non è affiliato con Ubisoft o Rainbow Six Siege.",
+                                        de: "Diese Website ist nicht mit Ubisoft oder Rainbow Six Siege verbunden."
+                                })}
+                        </p>
+                </div>
+        </div>
+</footer>

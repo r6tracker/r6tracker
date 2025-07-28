@@ -9,83 +9,83 @@ const locale = Astro.currentLocale || DEFAULT_LOCALE_SETTING;
 const path = Astro.url.pathname.replace(/^\/[a-z]{2}(?:-[A-Z]{2})?\//, "/");
 ---
 
-<!-- Header -->
-<header class="bg-gray-800 shadow-lg">
-    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-        <div class="flex items-center space-x-2">
-            <div
-                class="bg-red-600 w-10 h-10 rounded-full flex items-center justify-center"
-            >
-                <span class="font-bold text-xl">R6</span>
-            </div>
-            <h1 class="text-2xl font-bold">R6 Tracker</h1>
-        </div>
-        <nav>
-            <ul class="flex space-x-6">
-                <li>
-                    <a href="#" class="hover:text-red-500 transition-colors"
-                        >{t({ en: "Home", it: "Home", de: "Startseite" })}</a
-                    >
-                </li>
-                <li>
-                    <a href="#" class="hover:text-red-500 transition-colors"
-                        >{
-                            t({
-                                en: "Stats",
-                                it: "Statistiche",
-                                de: "Statistiken",
-                            })
-                        }</a
-                    >
-                </li>
-                <li>
-                    <a href="#" class="hover:text-red-500 transition-colors"
-                        >{
-                            t({
-                                en: "Leaderboard",
-                                it: "Classifica",
-                                de: "Bestenliste",
-                            })
-                        }</a
-                    >
-                </li>
-                <li>
-                    <a href="#" class="hover:text-red-500 transition-colors"
-                        >{
-                            t({
-                                en: "Operators",
-                                it: "Operatori",
-                                de: "Operatoren",
-                            })
-                        }</a
-                    >
-                </li>
-                <li>
-                    <a href="#" class="hover:text-red-500 transition-colors"
-                        >{t({ en: "About", it: "Informazioni", de: "Über" })}</a
-                    >
-                </li>
-            </ul>
-        </nav>
-        <div class="flex items-center space-x-2">
-            <select
-                name="lang"
-                class="bg-gray-700 text-white rounded px-2 py-1"
-                aria-label="Select language"
-                onchange={`window.location.href='/' + this.value??"" + '${path}'`}
-                value={locale}
-            >
-                {
-                    Object.keys(LOCALES_SETTING).map((localeOption) => (
-                        <option
-                            value={localeOption===DEFAULT_LOCALE_SETTING?" ":localeOption}
-                            selected={localeOption === locale}
-                        >
-                            {LOCALES_SETTING[localeOption as keyof typeof LOCALES_SETTING].label}
-                        </option>
-                    ))
-                }
-            </select>
-        </div>
+<header class="bg-slate-900/80 backdrop-blur-md border-b border-slate-700/50 sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <a href={getRelativeLocaleUrl(locale, "/")} class="flex items-center space-x-2">
+        <span class="text-xl font-bold text-white tracking-tight">
+          {t(SITE_TITLE)}
+        </span>
+      </a>
+
+      <nav class="hidden md:flex items-center space-x-6">
+        <a
+          href={getRelativeLocaleUrl(locale, "/")}
+          class="text-slate-300 hover:text-white transition-colors duration-200 font-medium"
+        >
+          {t({ en: "Home", it: "Home", de: "Startseite" })}
+        </a>
+        <a
+          href={getRelativeLocaleUrl(locale, "/blog")}
+          class="text-slate-300 hover:text-white transition-colors duration-200 font-medium"
+        >
+          {t({ en: "Blog", it: "Blog", de: "Blog" })}
+        </a>
+      </nav>
+
+      <div class="flex items-center space-x-3">
+        <select
+          class="bg-slate-800 border border-slate-700 text-slate-200 text-sm rounded-md px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-sky-500"
+          aria-label="Select language"
+          onchange={`window.location.href = this.value`}
+        >
+          {
+            Object.keys(LOCALES_SETTING).map((l) => {
+              const target = getRelativeLocaleUrl(l as any, path || "/");
+              return (
+                <option value={target} selected={l === locale}>
+                  {LOCALES_SETTING[l as keyof typeof LOCALES_SETTING].label}
+                </option>
+              );
+            })
+          }
+        </select>
+
+        <button
+          id="mobile-menu-button"
+          class="md:hidden text-slate-300 hover:text-white p-2"
+          aria-label="Toggle menu"
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
     </div>
+  </div>
+
+  <div id="mobile-menu" class="md:hidden hidden bg-slate-900 border-t border-slate-700/50">
+    <div class="px-2 pt-2 pb-3 space-y-1">
+      <a
+        href={getRelativeLocaleUrl(locale, "/")}
+        class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800"
+      >
+        {t({ en: "Home", it: "Home", de: "Startseite" })}
+      </a>
+      <a
+        href={getRelativeLocaleUrl(locale, "/blog")}
+        class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800"
+      >
+        {t({ en: "Blog", it: "Blog", de: "Blog" })}
+      </a>
+    </div>
+  </div>
 </header>
+
+<script>
+  const button = document.getElementById("mobile-menu-button");
+  const menu = document.getElementById("mobile-menu");
+  button?.addEventListener("click", () => {
+    menu?.classList.toggle("hidden");
+  });
+</script>

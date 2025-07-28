@@ -1,0 +1,28 @@
+{
+    "DEFAULT_LOCALE_SETTING": "en",
+    "LOCALES_SETTING": {
+        "en": {
+            "label": "English",
+            "lang": "en-US"
+        },
+        "it": {
+            "label": "Italiano",
+            "lang": "it-IT"
+        },
+        "de": {
+            "label": "Deutsch",
+            "lang": "de-DE"
+        }
+    },
+    "SITE_URL": "https://r6tracker.click",
+    "SITE_TITLE": {
+        "en": "R6 Tracker",
+        "it": "R6 Tracker",
+        "de": "R6 Tracker"
+    },
+    "SITE_DESCRIPTION": {
+        "en": "Track your Rainbow Six Siege stats and progress.",
+        "it": "Traccia le tue statistiche e i tuoi progressi in Rainbow Six Siege.",
+        "de": "Verfolge deine Rainbow Six Siege Statistiken und Fortschritte."
+    }
+}
