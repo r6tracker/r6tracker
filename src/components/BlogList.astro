@@ -14,7 +14,7 @@ const posts = blog
     .filter((post) => getLangFromPath(post.filePath) === currentLocale)
     .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 ---
-<div class="max-w-4xl mx-auto bg-gray-900 text-gray-100 mt-4">
+<div class="max-w-4xl mx-auto bg-gray-900 text-gray-100 my-4">
     <ul class="grid grid-cols-1 md:grid-cols-2 gap-8">
         {posts.map((post) => (
             <li class="flex flex-col bg-gray-800 rounded-lg shadow-md overflow-hidden">

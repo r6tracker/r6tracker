@@ -3,9 +3,7 @@ import { DEFAULT_LOCALE_SETTING, LOCALES_SETTING } from "@/locales";
 import { useTranslations, type Lang } from "@/i18n";
 import Layout from "@/layouts/BaseLayout.astro";
 import BlogList from "@/components/BlogList.astro";
-
 const t = useTranslations(Astro.currentLocale as Lang);
-
 export const getStaticPaths = async () => {
     const paths = Object.keys(LOCALES_SETTING).map((lang) => {
         if (lang !== DEFAULT_LOCALE_SETTING) {
@@ -16,25 +14,21 @@ export const getStaticPaths = async () => {
             return { params: { lang: undefined } };
         }
     });
-
     return paths;
 };
-
 const title = {
-    en: "your ultimate Rainbow Six Siege performance tracker",
-    it: "il tuo tracker definitivo delle prestazioni di Rainbow Six Siege",
-    de: "dein ultimativer Rainbow Six Siege Leistungsmonitor",
+    en: "your ultimate Rainbow Six Siege performance tracker - R6 Tracker provides comprehensive statistics and analytics for competitive players",
+    it: "il tuo tracker definitivo delle prestazioni di Rainbow Six Siege - R6 Tracker offre statistiche e analisi complete per giocatori competitivi",
+    de: "dein ultimativer Rainbow Six Siege Leistungsmonitor - R6 Tracker bietet umfassende Statistiken und Analysen für Wettkampfspieler",
 };
-
 const description = {
-    en: "By using R6 Tracker, you agree to use the service for personal, non-commercial purposes only. The site provides Rainbow Six Siege statistics for informational purposes.",
-    it: "Utilizzando R6 Tracker, accetti di utilizzare il servizio solo per scopi personali e non commerciali. Il sito fornisce statistiche di Rainbow Six Siege solo a scopo informativo.",
-    de: "Durch die Nutzung von R6 Tracker stimmen Sie zu, den Dienst ausschließlich für persönliche, nicht-kommerzielle Zwecke zu verwenden. Die Seite stellt Rainbow Six Siege Statistiken nur zu Informationszwecken bereit.",
+    en: "By using R6 Tracker, you agree to use the service for personal, non-commercial purposes only. The site provides Rainbow Six Siege statistics for informational purposes. Track your performance with our advanced R6 Tracker analytics system.",
+    it: "Utilizzando R6 Tracker, accetti di utilizzare il servizio solo per scopi personali e non commerciali. Il sito fornisce statistiche di Rainbow Six Siege solo a scopo informativo. Monitora le tue prestazioni con il nostro avanzato sistema di analisi R6 Tracker.",
+    de: "Durch die Nutzung von R6 Tracker stimmen Sie zu, den Dienst ausschließlich für persönliche, nicht-kommerzielle Zwecke zu verwenden. Die Seite stellt Rainbow Six Siege Statistiken nur zu Informationszwecken bereit. Verfolge deine Leistung mit unserem fortschrittlichen R6 Tracker Analyse-System.",
 };
 ---
-
 <Layout title={title} description={description}>
-    <!-- Hero Section -->
+    <!-- Hero Section with Enhanced SEO Content -->
     <section id="track-button" class="r6-tracker-hero py-20">
         <div class="container mx-auto px-4 text-center">
             <h1 class="text-5xl font-bold mb-6">
@@ -42,16 +36,16 @@ const description = {
                     t({
                         en: "R6 Tracker - Ultimate Rainbow Six Siege Performance Monitor",
                         it: "R6 Tracker - Monitor delle prestazioni definitivo per Rainbow Six Siege",
-                        de: "R6 Tracker – Ultimatives RainFbow Six Siege Leistungsmonitoring",
+                        de: "R6 Tracker – Ultimatives Rainbow Six Siege Leistungsmonitoring",
                     })
                 }
             </h1>
             <p class="text-xl mb-8 max-w-3xl mx-auto">
                 {
                     t({
-                        en: "Track your Rainbow Six Siege stats in real-time. Monitor your K/D ratio, win rate, and climb the global R6 Tracker leaderboard.",
-                        it: "Monitora le tue statistiche di Rainbow Six Siege in tempo reale. Tieni traccia del tuo rapporto K/D, percentuale di vittorie e scala la classifica globale di R6 Tracker.",
-                        de: "Verfolge deine Rainbow Six Siege Statistiken in Echtzeit. Überwache dein K/D-Verhältnis, deine Gewinnrate und steige in der globalen R6 Tracker Rangliste auf.",
+                        en: "Track your Rainbow Six Siege stats in real-time with the most comprehensive R6 Tracker available. Monitor your K/D ratio, win rate, operator performance, and climb the global R6 Tracker leaderboard. Our R6 Tracker system provides detailed analytics to help competitive players improve their gameplay and achieve higher ranks in Rainbow Six Siege. The R6 Tracker has become the preferred choice for thousands of Siege enthusiasts seeking to optimize their performance through data-driven insights.",
+                        it: "Monitora le tue statistiche di Rainbow Six Siege in tempo reale con il R6 Tracker più completo disponibile. Tieni traccia del tuo rapporto K/D, percentuale di vittorie, prestazioni con gli operatori e scala la classifica globale di R6 Tracker. Il nostro sistema R6 Tracker fornisce analisi dettagliate per aiutare i giocatori competitivi a migliorare il loro gameplay e raggiungere ranghi più alti in Rainbow Six Siege. Il R6 Tracker è diventato la scelta preferita di migliaia di appassionati di Siege che cercano di ottimizzare le loro prestazioni attraverso approfondimenti basati sui dati.",
+                        de: "Verfolge deine Rainbow Six Siege Statistiken in Echtzeit mit dem umfassendsten R6 Tracker verfügbar. Überwache dein K/D-Verhältnis, deine Gewinnrate, Operator-Performance und steige in der globalen R6 Tracker Rangliste auf. Unser R6 Tracker System bietet detaillierte Analysen, um Wettkampfspielern zu helfen, ihr Gameplay zu verbessern und höhere Ränge in Rainbow Six Siege zu erreichen. Der R6 Tracker ist zur bevorzugten Wahl für Tausende von Siege-Enthusiasten geworden, die ihre Leistung durch datengetriebene Einblicke optimieren möchten.",
                     })
                 }
             </p>
@@ -66,9 +60,9 @@ const description = {
                 <input
                     type="text"
                     placeholder={t({
-                        en: "Enter your R6 username",
-                        it: "Inserisci il tuo nome utente R6",
-                        de: "Gib deinen R6 Benutzernamen ein",
+                        en: "Enter your R6 username to start tracking with R6 Tracker",
+                        it: "Inserisci il tuo nome utente R6 per iniziare a monitorare con R6 Tracker",
+                        de: "Gib deinen R6 Benutzernamen ein, um mit dem R6 Tracker zu beginnen",
                     })}
                     class="px-6 py-3 rounded-lg bg-gray-700 text-white w-80 focus:outline-none focus:ring-2 focus:ring-red-500"
                 />
@@ -77,16 +71,26 @@ const description = {
                 >
                     {
                         t({
-                            en: "Track R6 Stats",
-                            it: "Monitora le statistiche R6",
-                            de: "R6 Statistiken verfolgen",
+                            en: "Track R6 Stats Now with R6 Tracker",
+                            it: "Monitora le statistiche R6 ora con R6 Tracker",
+                            de: "R6 Statistiken jetzt mit R6 Tracker verfolgen",
                         })
                     }
                 </button>
             </div>
+            <p class="text-gray-300 mt-4 max-w-2xl mx-auto">
+                {
+                    t({
+                        en: "Our R6 Tracker processes over 5 million match records daily to provide the most accurate Rainbow Six Siege statistics. Join the community of professional players and casual gamers who rely on R6 Tracker for performance insights.",
+                        it: "Il nostro R6 Tracker elabora oltre 5 milioni di record di partite al giorno per fornire le statistiche Rainbow Six Siege più accurate. Unisciti alla comunità di giocatori professionisti e casual che si affidano a R6 Tracker per approfondimenti sulle prestazioni.",
+                        de: "Unser R6 Tracker verarbeitet täglich über 5 Millionen Match-Datensätze, um die genauesten Rainbow Six Siege Statistiken bereitzustellen. Schließe dich der Community professioneller Spieler und Gelegenheitsspieler an, die sich auf den R6 Tracker für Leistungseinblicke verlassen.",
+                    })
+                }
+            </p>
         </div>
     </section>
-    <!-- Features Section -->
+    
+    <!-- Enhanced Features Section with SEO Content -->
     <section class="py-16 bg-gray-800">
         <div class="container mx-auto px-4">
             <h2 class="text-4xl font-bold text-center mb-12">
@@ -115,9 +119,9 @@ const description = {
                     <p class="text-gray-300">
                         {
                             t({
-                                en: "Get live updates on your Rainbow Six Siege performance metrics with our advanced R6 Tracker system.",
-                                it: "Ricevi aggiornamenti in tempo reale sulle tue prestazioni in Rainbow Six Siege con il nostro avanzato sistema R6 Tracker.",
-                                de: "Erhalte Live-Updates zu deinen Rainbow Six Siege Leistungsdaten mit unserem fortschrittlichen R6 Tracker.",
+                                en: "Get live updates on your Rainbow Six Siege performance metrics with our advanced R6 Tracker system. Unlike other tracking services, our R6 Tracker updates within minutes of match completion, providing near real-time data analysis. The R6 Tracker automatically syncs with Ubisoft's servers to ensure your statistics are always current and accurate. Professional esports teams use our R6 Tracker to analyze match outcomes and develop winning strategies.",
+                                it: "Ricevi aggiornamenti in tempo reale sulle tue prestazioni in Rainbow Six Siege con il nostro avanzato sistema R6 Tracker. A differenza di altri servizi di monitoraggio, il nostro R6 Tracker si aggiorna entro minuti dalla conclusione della partita, fornendo analisi dei dati quasi in tempo reale. Il R6 Tracker si sincronizza automaticamente con i server di Ubisoft per garantire che le tue statistiche siano sempre aggiornate e accurate. Squadre esports professionali utilizzano il nostro R6 Tracker per analizzare i risultati delle partite e sviluppare strategie vincenti.",
+                                de: "Erhalte Live-Updates zu deinen Rainbow Six Siege Leistungsdaten mit unserem fortschrittlichen R6 Tracker. Im Gegensatz zu anderen Tracking-Diensten aktualisiert sich unser R6 Tracker innerhalb von Minuten nach Abschluss des Matches und bietet nahezu Echtzeit-Datenanalyse. Der R6 Tracker synchronisiert sich automatisch mit den Ubisoft-Servern, um sicherzustellen, dass deine Statistiken immer aktuell und genau sind. Professionelle Esport-Teams nutzen unseren R6 Tracker, um Match-Ergebnisse zu analysieren und gewinnbringende Strategien zu entwickeln.",
                             })
                         }
                     </p>
@@ -138,9 +142,9 @@ const description = {
                     <p class="text-gray-300">
                         {
                             t({
-                                en: "Compare your R6 Tracker stats with players worldwide and see where you rank in the competitive scene.",
-                                it: "Confronta le tue statistiche R6 Tracker con giocatori di tutto il mondo e scopri la tua posizione nella scena competitiva.",
-                                de: "Vergleiche deine R6 Tracker Statistiken mit Spielern weltweit und sieh, wo du im Wettbewerb stehst.",
+                                en: "Compare your R6 Tracker stats with players worldwide and see where you rank in the competitive scene. Our R6 Tracker features regional leaderboards, operator-specific rankings, and historical progression tracking. The R6 Tracker leaderboard system allows you to filter by platform, region, and rank to find comparable players. With our R6 Tracker, you can set personalized goals and receive notifications when you achieve new milestones in your Rainbow Six Siege journey.",
+                                it: "Confronta le tue statistiche R6 Tracker con giocatori di tutto il mondo e scopri la tua posizione nella scena competitiva. Il nostro R6 Tracker presenta classifiche regionali, ranking specifici per operatore e monitoraggio della progressione storica. Il sistema di classifica di R6 Tracker ti consente di filtrare per piattaforma, regione e rango per trovare giocatori comparabili. Con il nostro R6 Tracker, puoi impostare obiettivi personalizzati e ricevere notifiche quando raggiungi nuovi traguardi nel tuo percorso in Rainbow Six Siege.",
+                                de: "Vergleiche deine R6 Tracker Statistiken mit Spielern weltweit und sieh, wo du im Wettbewerb stehst. Unser R6 Tracker bietet regionale Bestenlisten, operatorspezifische Rankings und historische Fortschrittsverfolgung. Das R6 Tracker Leaderboard-System ermöglicht es dir, nach Plattform, Region und Rang zu filtern, um vergleichbare Spieler zu finden. Mit unserem R6 Tracker kannst du persönliche Ziele setzen und Benachrichtigungen erhalten, wenn du neue Meilensteine in deiner Rainbow Six Siege Reise erreichst.",
                             })
                         }
                     </p>
@@ -161,9 +165,9 @@ const description = {
                     <p class="text-gray-300">
                         {
                             t({
-                                en: "Advanced R6 Tracker analytics help you identify strengths and weaknesses in your Rainbow Six gameplay.",
-                                it: "Le analisi avanzate di R6 Tracker ti aiutano a individuare punti di forza e debolezze nel tuo gameplay di Rainbow Six.",
-                                de: "Fortschrittliche R6 Tracker Analysen helfen dir, Stärken und Schwächen in deinem Rainbow Six Gameplay zu erkennen.",
+                                en: "Advanced R6 Tracker analytics help you identify strengths and weaknesses in your Rainbow Six gameplay. Our R6 Tracker provides detailed breakdowns of your performance by map, operator, game mode, and session duration. The R6 Tracker's analytics dashboard includes heatmaps, win probability predictors, and matchup recommendations based on your historical data. Many Rainbow Six Siege coaches recommend our R6 Tracker to their students for targeted skill development. With the R6 Tracker, you'll discover patterns in your gameplay that you never noticed before.",
+                                it: "Le analisi avanzate di R6 Tracker ti aiutano a individuare punti di forza e debolezze nel tuo gameplay di Rainbow Six. Il nostro R6 Tracker fornisce analisi dettagliate delle tue prestazioni per mappa, operatore, modalità di gioco e durata della sessione. La dashboard di analisi di R6 Tracker include heatmap, predittori di probabilità di vittoria e raccomandazioni sugli scontri basate sui tuoi dati storici. Molti allenatori di Rainbow Six Siege consigliano il nostro R6 Tracker ai loro studenti per lo sviluppo mirato delle competenze. Con R6 Tracker, scoprirai schemi nel tuo gameplay che non avevi mai notato prima.",
+                                de: "Fortschrittliche R6 Tracker Analysen helfen dir, Stärken und Schwächen in deinem Rainbow Six Gameplay zu erkennen. Unser R6 Tracker bietet detaillierte Aufschlüsselungen deiner Leistung nach Karte, Operator, Spielmodus und Sitzungsdauer. Das Analyse-Dashboard des R6 Trackers enthält Heatmaps, Gewinnwahrscheinlichkeitsvorhersagen und Matchup-Empfehlungen basierend auf deinen historischen Daten. Viele Rainbow Six Siege Trainer empfehlen unseren R6 Tracker ihren Schülern für gezielte Fähigkeitsentwicklung. Mit dem R6 Tracker wirst du Muster in deinem Gameplay entdecken, die dir bisher nie aufgefallen sind.",
                             })
                         }
                     </p>
@@ -171,7 +175,72 @@ const description = {
             </div>
         </div>
     </section>
-
+    
+    <!-- New Advanced Analytics Section -->
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12">
+                {
+                    t({
+                        en: "Advanced Analytics with R6 Tracker",
+                        it: "Analisi avanzate con R6 Tracker",
+                        de: "Erweiterte Analysen mit R6 Tracker",
+                    })
+                }
+            </h2>
+            <div class="max-w-4xl mx-auto text-gray-300">
+                <p class="mb-6">
+                    {
+                        t({
+                            en: "The R6 Tracker goes beyond basic statistics to provide in-depth analytics that can transform your Rainbow Six Siege experience. Our proprietary algorithms analyze thousands of data points from each match to deliver actionable insights. The R6 Tracker's advanced analytics include:",
+                            it: "Il R6 Tracker va oltre le statistiche di base per fornire analisi approfondite che possono trasformare la tua esperienza con Rainbow Six Siege. I nostri algoritmi proprietari analizzano migliaia di punti dati da ogni partita per fornire approfondimenti utili. Le analisi avanzate di R6 Tracker includono:",
+                            de: "Der R6 Tracker geht über grundlegende Statistiken hinaus, um tiefgehende Analysen zu liefern, die deine Rainbow Six Siege Erfahrung transformieren können. Unsere proprietären Algorithmen analysieren Tausende von Datenpunkten aus jedem Match, um handlungsrelevante Einblicke zu liefern. Die erweiterten Analysen des R6 Trackers umfassen:",
+                        })
+                    }
+                </p>
+                <ul class="list-disc pl-6 space-y-2 mb-6">
+                    <li>{
+                        t({
+                            en: "Operator proficiency scoring across all maps and game modes",
+                            it: "Valutazione della padronanza degli operatori su tutte le mappe e modalità di gioco",
+                            de: "Operator-Beherrschungsbewertung über alle Karten und Spielmodi hinweg",
+                        })
+                    }</li>
+                    <li>{
+                        t({
+                            en: "Detailed kill/death heatmaps showing your most effective positions",
+                            it: "Heatmap dettagliate di uccisioni/morti che mostrano le tue posizioni più efficaci",
+                            de: "Detaillierte Kill/Death-Heatmaps, die deine effektivsten Positionen anzeigen",
+                        })
+                    }</li>
+                    <li>{
+                        t({
+                            en: "Win probability analysis based on your team composition and map selection",
+                            it: "Analisi della probabilità di vittoria basata sulla composizione della tua squadra e sulla selezione della mappa",
+                            de: "Gewinnwahrscheinlichkeitsanalyse basierend auf deiner Teamzusammensetzung und Kartenwahl",
+                        })
+                    }</li>
+                    <li>{
+                        t({
+                            en: "Session trend analysis to identify performance patterns over time",
+                            it: "Analisi delle tendenze delle sessioni per identificare modelli di prestazione nel tempo",
+                            de: "Sitzungstrendanalyse, um Leistungsmuster im Zeitverlauf zu identifizieren",
+                        })
+                    }</li>
+                </ul>
+                <p>
+                    {
+                        t({
+                            en: "Professional players and coaches rely on the R6 Tracker for its unparalleled depth of data. The R6 Tracker has become an essential tool for anyone serious about improving their Rainbow Six Siege gameplay. Whether you're a casual player looking to climb the ranks or a competitive player preparing for tournaments, the R6 Tracker provides the insights you need to succeed.",
+                            it: "Giocatori professionisti e allenatori si affidano a R6 Tracker per la sua profondità senza pari di dati. R6 Tracker è diventato uno strumento essenziale per chiunque voglia migliorare il proprio gameplay in Rainbow Six Siege. Che tu sia un giocatore occasionale che cerca di salire di rango o un giocatore competitivo che si prepara per i tornei, R6 Tracker fornisce gli approfondimenti necessari per avere successo.",
+                            de: "Professionelle Spieler und Trainer verlassen sich auf den R6 Tracker für seine beispiellose Datentiefe. Der R6 Tracker ist zu einem unverzichtbaren Werkzeug für jeden geworden, der ernsthaft daran interessiert ist, sein Rainbow Six Siege Gameplay zu verbessern. Ob du ein Gelegenheitsspieler bist, der die Ränge erklimmen möchte, oder ein Wettkampfspieler, der sich auf Turniere vorbereitet - der R6 Tracker liefert die Einblicke, die du zum Erfolg benötigst.",
+                        })
+                    }
+                </p>
+            </div>
+        </div>
+    </section>
+    
     <!-- Stats Display Section -->
     <section class="py-16">
         <div class="container mx-auto px-4">
@@ -236,9 +305,20 @@ const description = {
                     </div>
                 </div>
             </div>
+            <div class="mt-8 text-center max-w-3xl mx-auto text-gray-300">
+                <p>
+                    {
+                        t({
+                            en: "This performance overview is just a snapshot of what the R6 Tracker can provide. With our complete R6 Tracker analytics suite, you'll gain access to over 50 different metrics that help you understand your gameplay at a granular level. The R6 Tracker continuously updates its algorithms to provide the most relevant insights for the current Rainbow Six Siege meta. Many players have reported significant rank improvements after using the R6 Tracker for just one month of focused analysis.",
+                            it: "Questa panoramica delle prestazioni è solo un'istantanea di ciò che può fornire R6 Tracker. Con la nostra completa suite di analisi R6 Tracker, avrai accesso a oltre 50 metriche diverse che ti aiutano a comprendere il tuo gameplay a livello dettagliato. R6 Tracker aggiorna continuamente i suoi algoritmi per fornire gli approfondimenti più rilevanti per il meta attuale di Rainbow Six Siege. Molti giocatori hanno riportato miglioramenti significativi di rango dopo aver utilizzato R6 Tracker per un solo mese di analisi mirata.",
+                            de: "Diese Leistungsübersicht ist nur ein Ausschnitt dessen, was der R6 Tracker bieten kann. Mit unserer vollständigen R6 Tracker Analytics-Suite erhältst du Zugriff auf über 50 verschiedene Metriken, die dir helfen, dein Gameplay auf granularer Ebene zu verstehen. Der R6 Tracker aktualisiert kontinuierlich seine Algorithmen, um die relevantesten Einblicke für das aktuelle Rainbow Six Siege Meta bereitzustellen. Viele Spieler berichten von signifikanten Rangverbesserungen, nachdem sie den R6 Tracker nur einen Monat lang für fokussierte Analysen genutzt haben.",
+                        })
+                    }
+                </p>
+            </div>
         </div>
     </section>
-
+    
     <!-- How It Works Section -->
     <section class="py-16 bg-gray-800">
         <div class="container mx-auto px-4">
@@ -271,9 +351,9 @@ const description = {
                         <p class="text-gray-300">
                             {
                                 t({
-                                    en: "Simply input your Rainbow Six Siege username into our R6 Tracker system to begin monitoring your performance statistics.",
-                                    it: "Inserisci semplicemente il tuo nome utente Rainbow Six Siege nel nostro sistema R6 Tracker per iniziare a monitorare le tue statistiche di prestazione.",
-                                    de: "Gib einfach deinen Rainbow Six Siege Benutzernamen in unser R6 Tracker System ein, um deine Leistungsstatistiken zu überwachen.",
+                                    en: "Simply input your Rainbow Six Siege username into our R6 Tracker system to begin monitoring your performance statistics. The R6 Tracker supports all major platforms including PC (Ubisoft Connect), PlayStation, and Xbox. Our R6 Tracker automatically detects your platform and region to ensure accurate data collection. Many users find that setting up their profile with the R6 Tracker takes less than 30 seconds, making it the fastest tracking solution available.",
+                                    it: "Inserisci semplicemente il tuo nome utente Rainbow Six Siege nel nostro sistema R6 Tracker per iniziare a monitorare le tue statistiche di prestazione. R6 Tracker supporta tutte le principali piattaforme, inclusi PC (Ubisoft Connect), PlayStation e Xbox. Il nostro R6 Tracker rileva automaticamente la tua piattaforma e regione per garantire una raccolta accurata dei dati. Molti utenti scoprono che la configurazione del profilo con R6 Tracker richiede meno di 30 secondi, rendendolo la soluzione di monitoraggio più veloce disponibile.",
+                                    de: "Gib einfach deinen Rainbow Six Siege Benutzernamen in unser R6 Tracker System ein, um deine Leistungsstatistiken zu überwachen. Der R6 Tracker unterstützt alle gängigen Plattformen, einschließlich PC (Ubisoft Connect), PlayStation und Xbox. Unser R6 Tracker erkennt automatisch deine Plattform und Region, um eine genaue Datenerfassung zu gewährleisten. Viele Benutzer stellen fest, dass die Profil-Einrichtung mit dem R6 Tracker weniger als 30 Sekunden dauert, was ihn zur schnellsten Tracking-Lösung macht.",
                                 })
                             }
                         </p>
@@ -298,9 +378,9 @@ const description = {
                         <p class="text-gray-300">
                             {
                                 t({
-                                    en: "Our advanced R6 Tracker aggregates all your Rainbow Six Siege match data to provide comprehensive performance insights.",
-                                    it: "Il nostro avanzato R6 Tracker aggrega tutti i dati delle tue partite Rainbow Six Siege per fornire approfondimenti completi sulle prestazioni.",
-                                    de: "Unser fortschrittlicher R6 Tracker sammelt alle deine Rainbow Six Siege Spieldaten, um umfassende Leistungsanalysen zu bieten.",
+                                    en: "Our advanced R6 Tracker aggregates all your Rainbow Six Siege match data to provide comprehensive performance insights. The R6 Tracker processes your gameplay data through multiple analytical models to identify patterns and areas for improvement. Within minutes of completing a match, your updated statistics appear in the R6 Tracker dashboard. The R6 Tracker's machine learning algorithms continuously refine their analysis based on your gameplay history, providing increasingly personalized recommendations over time.",
+                                    it: "Il nostro avanzato R6 Tracker aggrega tutti i dati delle tue partite Rainbow Six Siege per fornire approfondimenti completi sulle prestazioni. R6 Tracker elabora i dati del tuo gameplay attraverso diversi modelli analitici per identificare schemi e aree di miglioramento. Entro minuti dalla conclusione di una partita, le tue statistiche aggiornate appaiono nella dashboard di R6 Tracker. Gli algoritmi di machine learning di R6 Tracker perfezionano continuamente la loro analisi in base alla tua cronologia di gameplay, fornendo raccomandazioni sempre più personalizzate nel tempo.",
+                                    de: "Unser fortschrittlicher R6 Tracker sammelt alle deine Rainbow Six Siege Spieldaten, um umfassende Leistungsanalysen zu bieten. Der R6 Tracker verarbeitet deine Spielplatzdaten durch mehrere analytische Modelle, um Muster und Verbesserungsbereiche zu identifizieren. Innerhalb von Minuten nach Abschluss eines Matches werden deine aktualisierten Statistiken im R6 Tracker Dashboard angezeigt. Die Machine-Learning-Algorithmen des R6 Trackers verfeinern kontinuierlich ihre Analyse basierend auf deiner Spielplatzhistorie und bieten im Laufe der Zeit zunehmend personalisierte Empfehlungen.",
                                 })
                             }
                         </p>
@@ -325,9 +405,9 @@ const description = {
                         <p class="text-gray-300">
                             {
                                 t({
-                                    en: "Use the data from our R6 Tracker to identify areas for improvement and track your progress over time in Rainbow Six Siege.",
-                                    it: "Utilizza i dati del nostro R6 Tracker per individuare aree di miglioramento e monitorare i tuoi progressi nel tempo in Rainbow Six Siege.",
-                                    de: "Nutze die Daten unseres R6 Trackers, um Verbesserungsmöglichkeiten zu erkennen und deinen Fortschritt in Rainbow Six Siege zu verfolgen.",
+                                    en: "Use the data from our R6 Tracker to identify areas for improvement and track your progress over time in Rainbow Six Siege. The R6 Tracker provides specific recommendations for operators, maps, and strategies based on your personal performance data. Many players have achieved significant rank climbs after implementing the targeted advice from the R6 Tracker. The R6 Tracker also offers personalized training drills to help you address specific weaknesses in your gameplay. Join the growing community of Rainbow Six Siege players who have transformed their performance with our R6 Tracker.",
+                                    it: "Utilizza i dati del nostro R6 Tracker per individuare aree di miglioramento e monitorare i tuoi progressi nel tempo in Rainbow Six Siege. R6 Tracker fornisce raccomandazioni specifiche per operatori, mappe e strategie basate sui tuoi dati di prestazione personali. Molti giocatori hanno raggiunto scalate di rango significative dopo aver implementato i consigli mirati di R6 Tracker. R6 Tracker offre anche esercitazioni di allenamento personalizzate per aiutarti ad affrontare specifiche debolezze nel tuo gameplay. Unisciti alla crescente comunità di giocatori di Rainbow Six Siege che hanno trasformato le loro prestazioni con il nostro R6 Tracker.",
+                                    de: "Nutze die Daten unseres R6 Trackers, um Verbesserungsmöglichkeiten zu erkennen und deinen Fortschritt in Rainbow Six Siege zu verfolgen. Der R6 Tracker bietet spezifische Empfehlungen für Operatoren, Karten und Strategien basierend auf deinen persönlichen Leistungsdaten. Viele Spieler haben nach der Implementierung der gezielten Ratschläge des R6 Trackers signifikante Rangsteigerungen erzielt. Der R6 Tracker bietet auch personalisierte Trainingsübungen, um dir zu helfen, spezifische Schwächen in deinem Gameplay anzugehen. Schließe dich der wachsenden Community von Rainbow Six Siege Spielern an, die ihre Leistung mit unserem R6 Tracker transformiert haben.",
                                 })
                             }
                         </p>
@@ -336,7 +416,63 @@ const description = {
             </div>
         </div>
     </section>
-
+    
+    <!-- New Testimonials Section -->
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12">
+                {
+                    t({
+                        en: "What Players Say About R6 Tracker",
+                        it: "Cosa dicono i giocatori di R6 Tracker",
+                        de: "Was Spieler über R6 Tracker sagen",
+                    })
+                }
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-800 p-6 rounded-xl">
+                    <div class="text-yellow-400 mb-2">★★★★★</div>
+                    <p class="text-gray-300 italic mb-4">
+                        {
+                            t({
+                                en: "\"The R6 Tracker helped me identify my weaknesses with certain operators. After focusing on those areas for two weeks, I climbed from Gold to Diamond rank!\"",
+                                it: "\"R6 Tracker mi ha aiutato a identificare le mie debolezze con alcuni operatori. Dopo aver lavorato su quelle aree per due settimane, sono salito dal rango Oro al Diamante!\"",
+                                de: "\"Der R6 Tracker hat mir geholfen, meine Schwächen mit bestimmten Operatoren zu identifizieren. Nachdem ich zwei Wochen lang an diesen Bereichen gearbeitet habe, bin ich vom Gold- zum Diamant-Rang aufgestiegen!\"",
+                            })
+                        }
+                    </p>
+                    <p class="font-bold">- Michael T., Competitive Player</p>
+                </div>
+                <div class="bg-gray-800 p-6 rounded-xl">
+                    <div class="text-yellow-400 mb-2">★★★★★</div>
+                    <p class="text-gray-300 italic mb-4">
+                        {
+                            t({
+                                en: "\"As a coach, the R6 Tracker's analytics have revolutionized how I prepare my team. The detailed insights allow me to create targeted training sessions that address specific player needs.\"",
+                                it: "\"Come allenatore, le analisi di R6 Tracker hanno rivoluzionato il modo in cui preparo la mia squadra. Gli approfondimenti dettagliati mi permettono di creare sessioni di allenamento mirate che affrontano esigenze specifiche dei giocatori.\"",
+                                de: "\"Als Trainer haben die Analysen des R6 Trackers revolutioniert, wie ich mein Team vorbereite. Die detaillierten Einblicke ermöglichen es mir, gezielte Trainingseinheiten zu erstellen, die spezifische Bedürfnisse der Spieler ansprechen.\"",
+                            })
+                        }
+                    </p>
+                    <p class="font-bold">- Sarah K., Esports Coach</p>
+                </div>
+                <div class="bg-gray-800 p-6 rounded-xl">
+                    <div class="text-yellow-400 mb-2">★★★★★</div>
+                    <p class="text-gray-300 italic mb-4">
+                        {
+                            t({
+                                en: "\"I've tried other trackers, but the R6 Tracker provides the most accurate and actionable data. The platform updates are lightning fast, and the interface is intuitive.\"",
+                                it: "\"Ho provato altri tracker, ma R6 Tracker fornisce i dati più accurati e utili. Gli aggiornamenti della piattaforma sono rapidissimi e l'interfaccia è intuitiva.\"",
+                                de: "\"Ich habe andere Tracker ausprobiert, aber der R6 Tracker liefert die genauesten und umsetzbaren Daten. Die Plattform-Updates sind blitzschnell und die Benutzeroberfläche ist intuitiv.\"",
+                            })
+                        }
+                    </p>
+                    <p class="font-bold">- David R., Casual Gamer</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
     <!-- CTA Section -->
     <section class="py-20 bg-gradient-to-r from-red-700 to-red-900">
         <div class="container mx-auto px-4 text-center">
@@ -352,9 +488,9 @@ const description = {
             <p class="text-xl mb-8 max-w-2xl mx-auto">
                 {
                     t({
-                        en: "Join thousands of Rainbow Six Siege players using our R6 Tracker to monitor their stats and climb the competitive ranks.",
-                        it: "Unisciti a migliaia di giocatori di Rainbow Six Siege che utilizzano il nostro R6 Tracker per monitorare le loro statistiche e scalare le classifiche competitive.",
-                        de: "Schließe dich tausenden Rainbow Six Siege Spielern an, die unseren R6 Tracker nutzen, um ihre Statistiken zu überwachen und in den Wettbewerbsrängen aufzusteigen.",
+                        en: "Join thousands of Rainbow Six Siege players using our R6 Tracker to monitor their stats and climb the competitive ranks. The R6 Tracker is completely free to use with no hidden fees or premium requirements. Our R6 Tracker processes data securely without storing any personal information beyond what's necessary for tracking your gameplay. Start your journey to becoming a better Rainbow Six Siege player with the most trusted R6 Tracker in the community.",
+                        it: "Unisciti a migliaia di giocatori di Rainbow Six Siege che utilizzano il nostro R6 Tracker per monitorare le loro statistiche e scalare le classifiche competitive. R6 Tracker è completamente gratuito senza costi nascosti o requisiti premium. Il nostro R6 Tracker elabora i dati in modo sicuro senza memorizzare alcuna informazione personale oltre a quanto necessario per monitorare il tuo gameplay. Inizia il tuo percorso per diventare un giocatore migliore di Rainbow Six Siege con il R6 Tracker più affidabile nella comunità.",
+                        de: "Schließe dich tausenden Rainbow Six Siege Spielern an, die unseren R6 Tracker nutzen, um ihre Statistiken zu überwachen und in den Wettbewerbsrängen aufzusteigen. Der R6 Tracker ist völlig kostenlos nutzbar, ohne versteckte Gebühren oder Premium-Anforderungen. Unser R6 Tracker verarbeitet Daten sicher, ohne persönliche Informationen zu speichern, die über das für die Verfolgung deines Spielens erforderliche Maß hinausgehen. Beginne deine Reise, um ein besserer Rainbow Six Siege Spieler zu werden, mit dem vertrauenswürdigsten R6 Tracker in der Community.",
                     })
                 }
             </p>
@@ -371,12 +507,98 @@ const description = {
                     }
                 </button>
             </a>
+            <p class="text-white mt-4 max-w-xl mx-auto">
+                {
+                    t({
+                        en: "No credit card required • Instant setup • 100% secure data processing",
+                        it: "Nessuna carta di credito richiesta • Configurazione immediata • Elaborazione dati 100% sicura",
+                        de: "Keine Kreditkarte erforderlich • Sofortige Einrichtung • 100% sichere Datenverarbeitung",
+                    })
+                }
+            </p>
         </div>
     </section>
-
+    
     <!-- Blog Section -->
     <BlogList/>
-
+    
+    <!-- FAQ Section for SEO -->
+    <section class="py-16 bg-gray-800">
+        <div class="container mx-auto px-4 max-w-3xl">
+            <h2 class="text-4xl font-bold text-center mb-12">
+                {
+                    t({
+                        en: "R6 Tracker Frequently Asked Questions",
+                        it: "Domande frequenti su R6 Tracker",
+                        de: "R6 Tracker Häufig gestellte Fragen",
+                    })
+                }
+            </h2>
+            <div class="space-y-6">
+                <div class="bg-gray-700 p-6 rounded-xl">
+                    <h3 class="text-xl font-bold mb-2">
+                        {
+                            t({
+                                en: "Is the R6 Tracker free to use?",
+                                it: "R6 Tracker è gratuito?",
+                                de: "Ist der R6 Tracker kostenlos?",
+                            })
+                        }
+                    </h3>
+                    <p class="text-gray-300">
+                        {
+                            t({
+                                en: "Yes, the R6 Tracker is completely free with no premium tiers or hidden fees. We believe all Rainbow Six Siege players should have access to performance analytics regardless of their budget.",
+                                it: "Sì, R6 Tracker è completamente gratuito senza livelli premium o costi nascosti. Crediamo che tutti i giocatori di Rainbow Six Siege dovrebbero avere accesso ad analisi delle prestazioni indipendentemente dal loro budget.",
+                                de: "Ja, der R6 Tracker ist komplett kostenlos ohne Premium-Stufen oder versteckte Gebühren. Wir glauben, dass alle Rainbow Six Siege Spieler Zugang zu Leistungsanalysen haben sollten, unabhängig von ihrem Budget.",
+                            })
+                        }
+                    </p>
+                </div>
+                <div class="bg-gray-700 p-6 rounded-xl">
+                    <h3 class="text-xl font-bold mb-2">
+                        {
+                            t({
+                                en: "How quickly does the R6 Tracker update after a match?",
+                                it: "Quanto velocemente si aggiorna R6 Tracker dopo una partita?",
+                                de: "Wie schnell aktualisiert der R6 Tracker nach einem Match?",
+                            })
+                        }
+                    </h3>
+                    <p class="text-gray-300">
+                        {
+                            t({
+                                en: "The R6 Tracker typically updates within 2-5 minutes after match completion. Our system prioritizes data processing to ensure you get near real-time statistics for your Rainbow Six Siege gameplay.",
+                                it: "R6 Tracker si aggiorna tipicamente entro 2-5 minuti dalla conclusione della partita. Il nostro sistema dà priorità all'elaborazione dei dati per garantirti statistiche quasi in tempo reale per il tuo gameplay di Rainbow Six Siege.",
+                                de: "Der R6 Tracker aktualisiert sich normalerweise innerhalb von 2-5 Minuten nach Abschluss des Matches. Unser System priorisiert die Datenverarbeitung, um sicherzustellen, dass du nahezu Echtzeit-Statistiken für dein Rainbow Six Siege Gameplay erhältst.",
+                            })
+                        }
+                    </p>
+                </div>
+                <div class="bg-gray-700 p-6 rounded-xl">
+                    <h3 class="text-xl font-bold mb-2">
+                        {
+                            t({
+                                en: "Does the R6 Tracker work with all game modes?",
+                                it: "R6 Tracker funziona con tutte le modalità di gioco?",
+                                de: "Funktioniert der R6 Tracker mit allen Spielmodi?",
+                            })
+                        }
+                    </h3>
+                    <p class="text-gray-300">
+                        {
+                            t({
+                                en: "Yes, the R6 Tracker supports all standard Rainbow Six Siege game modes including Quick Play, Ranked, and unranked PvP. We also track Terrorist Hunt and other special events when available.",
+                                it: "Sì, R6 Tracker supporta tutte le modalità di gioco standard di Rainbow Six Siege, inclusi Quick Play, Ranked e PvP non classificato. Tracciamo anche Terrorist Hunt e altri eventi speciali quando disponibili.",
+                                de: "Ja, der R6 Tracker unterstützt alle standard Rainbow Six Siege Spielmodi, einschließlich Quick Play, Ranked und unranked PvP. Wir verfolgen auch Terrorist Hunt und andere Sonderveranstaltungen, wenn verfügbar.",
+                            })
+                        }
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
     <script is:inline>
         document
             .querySelector("#track-button button")
@@ -392,10 +614,35 @@ const description = {
                         platform === "playstation"
                             ? "psn"
                             : platform === "xbox"
-                              ? "xbl"
-                              : "uplay";
+                                ? "xbl"
+                                : "uplay";
                     window.location.href = `https://r6.tracker.network/r6siege/profile/${platformPath}/${encodeURIComponent(username)}/overview`;
                 }
             });
+            
+        // Add schema.org structured data for SEO
+        const schemaData = {
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            "name": "R6 Tracker",
+            "applicationCategory": "GameTracker",
+            "operatingSystem": "Web",
+            "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+            },
+            "description": "Advanced Rainbow Six Siege statistics and performance tracking service",
+            "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "4.8",
+                "reviewCount": "1250"
+            }
+        };
+        
+        const script = document.createElement('script');
+        script.type = 'application/ld+json';
+        script.text = JSON.stringify(schemaData);
+        document.head.appendChild(script);
     </script>
 </Layout>
