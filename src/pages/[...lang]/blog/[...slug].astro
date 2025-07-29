@@ -4,6 +4,7 @@ import { render } from "astro:content";
 import { DEFAULT_LOCALE_SETTING } from "@/locales";
 import Layout from "@/layouts/BaseLayout.astro";
 import { getFileNameFromPath, getLangFromPath } from "@/common";
+import Image from "astro/components/Image.astro";
 
 
 export async function getStaticPaths() {
@@ -37,6 +38,9 @@ const { Content } = await render(post);
 <Layout>
 	<h1 class="text-lg font-bold text-center mb-4">{post.data.title}</h1>
 	<article class="prose lg:prose-sm mx-auto prose-invert dark:prose-invert">
+		{post.data.image && (
+			<Image src={post.data.image} alt={post.data.title} class="mx-auto mb-6 rounded max-h-64 w-auto" />
+		)}
 		<Content />
 	</article>
 </Layout>
