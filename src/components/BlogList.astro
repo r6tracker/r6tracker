@@ -4,7 +4,7 @@ import { getEntry } from "astro:content";
 import { getCollection } from "astro:content";
 import { getRelativeLocaleUrl } from "astro:i18n";
 import { getFileNameFromPath,getLangFromPath } from "@/common";
-import Image from "astro/components/Image.astro";
+import { Image } from 'astro:assets';
 
 const currentLocale = Astro.currentLocale || DEFAULT_LOCALE;
 

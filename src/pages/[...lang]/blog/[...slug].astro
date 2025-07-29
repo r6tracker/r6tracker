@@ -4,7 +4,7 @@ import { render } from "astro:content";
 import { DEFAULT_LOCALE_SETTING } from "@/locales";
 import Layout from "@/layouts/BaseLayout.astro";
 import { getFileNameFromPath, getLangFromPath } from "@/common";
-import Image from "astro/components/Image.astro";
+import { Image } from 'astro:assets';
 
 
 export async function getStaticPaths() {
