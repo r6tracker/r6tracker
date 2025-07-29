@@ -2,6 +2,7 @@
 import { DEFAULT_LOCALE_SETTING, LOCALES_SETTING } from "@/locales";
 import { useTranslations, type Lang } from "@/i18n";
 import Layout from "@/layouts/BaseLayout.astro";
+import BlogList from "@/components/BlogList.astro";
 
 const t = useTranslations(Astro.currentLocale as Lang);
 
@@ -22,15 +23,14 @@ export const getStaticPaths = async () => {
 const title = {
     en: "your ultimate Rainbow Six Siege performance tracker",
     it: "il tuo tracker definitivo delle prestazioni di Rainbow Six Siege",
-    de: "dein ultimativer Rainbow Six Siege Leistungsmonitor"
+    de: "dein ultimativer Rainbow Six Siege Leistungsmonitor",
 };
 
 const description = {
     en: "By using R6 Tracker, you agree to use the service for personal, non-commercial purposes only. The site provides Rainbow Six Siege statistics for informational purposes.",
     it: "Utilizzando R6 Tracker, accetti di utilizzare il servizio solo per scopi personali e non commerciali. Il sito fornisce statistiche di Rainbow Six Siege solo a scopo informativo.",
-    de: "Durch die Nutzung von R6 Tracker stimmen Sie zu, den Dienst ausschließlich für persönliche, nicht-kommerzielle Zwecke zu verwenden. Die Seite stellt Rainbow Six Siege Statistiken nur zu Informationszwecken bereit."
+    de: "Durch die Nutzung von R6 Tracker stimmen Sie zu, den Dienst ausschließlich für persönliche, nicht-kommerzielle Zwecke zu verwenden. Die Seite stellt Rainbow Six Siege Statistiken nur zu Informationszwecken bereit.",
 };
-
 ---
 
 <Layout title={title} description={description}>
@@ -373,16 +373,29 @@ const description = {
             </a>
         </div>
     </section>
-    
-    <script is:inline>
-        document.querySelector('#track-button button').addEventListener('click', function () {
-            const platform = document.querySelector('#track-button select').value;
-            const username = document.querySelector('#track-button input[type="text"]').value.trim();
-            if (username) {
-                let platformPath = platform === 'playstation' ? 'psn' : platform === 'xbox' ? 'xbl' : 'uplay';
-                window.location.href = `https://r6.tracker.network/r6siege/profile/${platformPath}/${encodeURIComponent(username)}/overview`;
-            }
-        });
 
+    <!-- Blog Section -->
+    <BlogList />
+
+    <script is:inline>
+        document
+            .querySelector("#track-button button")
+            .addEventListener("click", function () {
+                const platform = document.querySelector(
+                    "#track-button select",
+                ).value;
+                const username = document
+                    .querySelector('#track-button input[type="text"]')
+                    .value.trim();
+                if (username) {
+                    let platformPath =
+                        platform === "playstation"
+                            ? "psn"
+                            : platform === "xbox"
+                              ? "xbl"
+                              : "uplay";
+                    window.location.href = `https://r6.tracker.network/r6siege/profile/${platformPath}/${encodeURIComponent(username)}/overview`;
+                }
+            });
     </script>
 </Layout>

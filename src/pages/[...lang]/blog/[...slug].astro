@@ -35,7 +35,7 @@ const { Content } = await render(post);
 
 ---
 
-<Layout>
+<Layout title={post.data.title} description={post.data.description}>
 	<h1 class="text-lg font-bold text-center mb-4">{post.data.title}</h1>
 	<article class="prose lg:prose-sm mx-auto prose-invert dark:prose-invert">
 		{post.data.image && (

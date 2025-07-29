@@ -1,12 +1,11 @@
 ---
 // Import the global.css file here so that it is included on
 // all pages through the use of the <BaseHead /> component.
-import '../styles/global.css';
-import { SITE_TITLE } from '../consts';
-import FallbackImage from '../assets/og.png';
-import type { ImageMetadata } from 'astro';
-import { useTranslations, type Lang } from '@/i18n';
-
+import "../styles/global.css";
+import { SITE_TITLE } from "../consts";
+import FallbackImage from "../assets/og.png";
+import type { ImageMetadata } from "astro";
+import { useTranslations, type Lang } from "@/i18n";
 
 interface Props {
 	title: string;
@@ -30,13 +29,25 @@ const t = useTranslations(Astro.currentLocale as Lang);
 	rel="alternate"
 	type="application/rss+xml"
 	title={t(SITE_TITLE)}
-	href={new URL('rss.xml', Astro.site)}
+	href={new URL("rss.xml", Astro.site)}
 />
 <meta name="generator" content={Astro.generator} />
 
 <!-- Font preloads -->
-<link rel="preload" href="/fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin />
-<link rel="preload" href="/fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin />
+<link
+	rel="preload"
+	href="/fonts/atkinson-regular.woff"
+	as="font"
+	type="font/woff"
+	crossorigin
+/>
+<link
+	rel="preload"
+	href="/fonts/atkinson-bold.woff"
+	as="font"
+	type="font/woff"
+	crossorigin
+/>
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
@@ -61,4 +72,7 @@ const t = useTranslations(Astro.currentLocale as Lang);
 <meta property="twitter:image" content={new URL(image.src, Astro.url)} />
 
 <!-- Ahrefs Analytics -->
-<script src="https://analytics.ahrefs.com/analytics.js" data-key="KvtyK+22jK0FbZWERPZrXw" async></script>
+<script
+	src="https://analytics.ahrefs.com/analytics.js"
+	data-key="KvtyK+22jK0FbZWERPZrXw"
+	async></script>
