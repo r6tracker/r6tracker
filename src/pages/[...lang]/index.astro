@@ -18,9 +18,22 @@ export const getStaticPaths = async () => {
 
     return paths;
 };
+
+const title = {
+    en: "your ultimate Rainbow Six Siege performance tracker",
+    it: "il tuo tracker definitivo delle prestazioni di Rainbow Six Siege",
+    de: "dein ultimativer Rainbow Six Siege Leistungsmonitor"
+};
+
+const description = {
+    en: "By using R6 Tracker, you agree to use the service for personal, non-commercial purposes only. The site provides Rainbow Six Siege statistics for informational purposes.",
+    it: "Utilizzando R6 Tracker, accetti di utilizzare il servizio solo per scopi personali e non commerciali. Il sito fornisce statistiche di Rainbow Six Siege solo a scopo informativo.",
+    de: "Durch die Nutzung von R6 Tracker stimmen Sie zu, den Dienst ausschließlich für persönliche, nicht-kommerzielle Zwecke zu verwenden. Die Seite stellt Rainbow Six Siege Statistiken nur zu Informationszwecken bereit."
+};
+
 ---
 
-<Layout>
+<Layout title={title} description={description}>
     <!-- Hero Section -->
     <section id="track-button" class="r6-tracker-hero py-20">
         <div class="container mx-auto px-4 text-center">

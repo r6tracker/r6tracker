@@ -1,15 +1,27 @@
 ---
 import Layout from "@/layouts/BaseLayout.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "@/consts";
+
+const title= {
+  en: "Privacy Policy",
+  it: "Informativa sulla privacy",
+  de: "Datenschutzrichtlinie"
+};
+
+const description = {
+    en: `We respect your privacy. This policy explains how we handle your data on ${SITE_TITLE}.`,
+    it: `Rispettiamo la tua privacy. Questa politica spiega come gestiamo i tuoi dati su ${SITE_TITLE}.`,
+    de: `Wir respektieren Ihre Privatsphäre. Diese Richtlinie erklärt, wie wir Ihre Daten auf ${SITE_TITLE} behandeln.`
+};
 ---
 
-<Layout>
+<Layout title={title} description={description}>
     <section class="privacy-policy max-w-2xl mx-auto px-4 py-10 space-y-8">
         <h1 class="text-3xl font-bold mb-4">Privacy Policy</h1>
         <p class="mb-6">
-            Welcome to {SITE_TITLE.en}! Your privacy is important to us. This
+            Welcome to {SITE_TITLE}! Your privacy is important to us. This
             Privacy Policy explains how we collect, use, and protect your
-            information when you use {SITE_TITLE.en} ({SITE_DESCRIPTION.en}).
+            information when you use {SITE_TITLE} ({SITE_DESCRIPTION}).
         </p>
 
         <h2 class="text-2xl font-semibold mt-8 mb-2">Information We Collect</h2>
@@ -27,14 +39,14 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "@/consts";
 
         <h2 class="text-2xl font-semibold mt-8 mb-2">How We Use Your Information</h2>
         <ul class="list-disc list-inside space-y-2 mb-6">
-            <li>To provide and maintain {SITE_TITLE.en}.</li>
+            <li>To provide and maintain {SITE_TITLE}.</li>
             <li>To analyze and improve user experience.</li>
             <li>To ensure the security of our website.</li>
         </ul>
 
         <h2 class="text-2xl font-semibold mt-8 mb-2">Cookies</h2>
         <p class="mb-6">
-            {SITE_TITLE.en} may use cookies to enhance your browsing experience.
+            {SITE_TITLE} may use cookies to enhance your browsing experience.
             You can disable cookies in your browser settings if you prefer.
         </p>
 
@@ -59,7 +71,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "@/consts";
         <h2 class="text-2xl font-semibold mt-8 mb-2">Contact Us</h2>
         <p>
             If you have any questions about this Privacy Policy, please contact
-            us via the information provided on {SITE_TITLE.en}.
+            us via the information provided on {SITE_TITLE}.
         </p>
     </section>
 </Layout>
