@@ -24,8 +24,7 @@ export default defineConfig({
     },
   },
 
-  integrations: [mdx(),
-  sitemap({
+  integrations: [mdx(), sitemap({
     i18n: {
       defaultLocale: DEFAULT_LOCALE_SETTING,
       locales: Object.fromEntries(
@@ -34,9 +33,7 @@ export default defineConfig({
         )
       ),
     },
-  }),
-
-  ],
+  })],
 
   vite: {
     plugins: [tailwindcss()],

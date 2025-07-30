@@ -1,7 +1,6 @@
 ---
 // Import the global.css file here so that it is included on
 // all pages through the use of the <BaseHead /> component.
-import "../styles/global.css";
 import { SITE_TITLE } from "../consts";
 import FallbackImage from "../assets/og.png";
 import type { ImageMetadata } from "astro";
@@ -23,6 +22,7 @@ const t = useTranslations(Astro.currentLocale as Lang);
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="color-scheme" content="light dark">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="sitemap" href="/sitemap-index.xml" />
 <link
@@ -76,3 +76,5 @@ const t = useTranslations(Astro.currentLocale as Lang);
 	src="https://analytics.ahrefs.com/analytics.js"
 	data-key="KvtyK+22jK0FbZWERPZrXw"
 	async></script>
+
+ <script is:inline src="../../node_modules/preline/dist/preline.js"></script>

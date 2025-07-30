@@ -9,11 +9,18 @@ const locale = Astro.currentLocale || DEFAULT_LOCALE_SETTING;
 const path = Astro.url.pathname.replace(/^\/[a-z]{2}(?:-[A-Z]{2})?\//, "/");
 ---
 
-<header class="bg-slate-900/80 backdrop-blur-md border-b border-slate-700/50 sticky top-0 z-50">
+<header
+  class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200/50 dark:border-slate-700/50 sticky top-0 z-50 transition-colors"
+>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
-      <a href={getRelativeLocaleUrl(locale, "/")} class="flex items-center space-x-2">
-        <span class="text-xl font-bold text-white tracking-tight">
+      <a
+        href={getRelativeLocaleUrl(locale, "/")}
+        class="flex items-center space-x-2"
+      >
+        <span
+          class="text-xl font-bold text-slate-900 dark:text-white tracking-tight"
+        >
           {t(SITE_TITLE)}
         </span>
       </a>
@@ -21,13 +28,13 @@ const path = Astro.url.pathname.replace(/^\/[a-z]{2}(?:-[A-Z]{2})?\//, "/");
       <nav class="hidden md:flex items-center space-x-6">
         <a
           href={getRelativeLocaleUrl(locale, "/")}
-          class="text-slate-300 hover:text-white transition-colors duration-200 font-medium"
+          class="text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors duration-200 font-medium"
         >
           {t({ en: "Home", it: "Home", de: "Startseite" })}
         </a>
         <a
           href={getRelativeLocaleUrl(locale, "/blog")}
-          class="text-slate-300 hover:text-white transition-colors duration-200 font-medium"
+          class="text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors duration-200 font-medium"
         >
           {t({ en: "Blog", it: "Blog", de: "Blog" })}
         </a>
@@ -35,7 +42,7 @@ const path = Astro.url.pathname.replace(/^\/[a-z]{2}(?:-[A-Z]{2})?\//, "/");
 
       <div class="flex items-center space-x-3">
         <select
-          class="bg-slate-800 border border-slate-700 text-slate-200 text-sm rounded-md px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-sky-500"
+          class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 text-sm rounded-md px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-sky-500"
           aria-label="Select language"
           onchange={`window.location.href = this.value`}
         >
@@ -52,29 +59,79 @@ const path = Astro.url.pathname.replace(/^\/[a-z]{2}(?:-[A-Z]{2})?\//, "/");
         </select>
 
         <button
-          id="mobile-menu-button"
-          class="md:hidden text-slate-300 hover:text-white p-2"
-          aria-label="Toggle menu"
+          type="button"
+          class="hs-dark-mode-active:hidden block hs-dark-mode font-medium text-gray-800 rounded-full hover:bg-gray-200 focus:outline-hidden focus:bg-gray-200 dark:text-neutral-200 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800"
+          data-hs-theme-click-value="dark"
         >
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
+          <span
+            class="group inline-flex shrink-0 justify-center items-center size-9"
+          >
+            <svg
+              class="shrink-0 size-4"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+            </svg>
+          </span>
+        </button>
+        <button
+          type="button"
+          class="hs-dark-mode-active:block hidden hs-dark-mode font-medium text-gray-800 rounded-full hover:bg-gray-200 focus:outline-hidden focus:bg-gray-200 dark:text-neutral-200 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800"
+          data-hs-theme-click-value="light"
+        >
+          <span
+            class="group inline-flex shrink-0 justify-center items-center size-9"
+          >
+            <svg
+              class="shrink-0 size-4"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="12" cy="12" r="4"></circle>
+              <path d="M12 2v2"></path>
+              <path d="M12 20v2"></path>
+              <path d="m4.93 4.93 1.41 1.41"></path>
+              <path d="m17.66 17.66 1.41 1.41"></path>
+              <path d="M2 12h2"></path>
+              <path d="M20 12h2"></path>
+              <path d="m6.34 17.66-1.41 1.41"></path>
+              <path d="m19.07 4.93-1.41 1.41"></path>
+            </svg>
+          </span>
         </button>
       </div>
     </div>
   </div>
 
-  <div id="mobile-menu" class="md:hidden hidden bg-slate-900 border-t border-slate-700/50">
+  <div
+    id="mobile-menu"
+    class="md:hidden hidden bg-white dark:bg-slate-900 border-t border-slate-200/50 dark:border-slate-700/50 transition-colors"
+  >
     <div class="px-2 pt-2 pb-3 space-y-1">
       <a
         href={getRelativeLocaleUrl(locale, "/")}
-        class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800"
+        class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800"
       >
         {t({ en: "Home", it: "Home", de: "Startseite" })}
       </a>
       <a
         href={getRelativeLocaleUrl(locale, "/blog")}
-        class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800"
+        class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800"
       >
         {t({ en: "Blog", it: "Blog", de: "Blog" })}
       </a>
@@ -83,6 +140,7 @@ const path = Astro.url.pathname.replace(/^\/[a-z]{2}(?:-[A-Z]{2})?\//, "/");
 </header>
 
 <script>
+  // Mobile menu toggle
   const button = document.getElementById("mobile-menu-button");
   const menu = document.getElementById("mobile-menu");
   button?.addEventListener("click", () => {

@@ -1,4 +1,5 @@
 ---
+import "../styles/global.css";
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
@@ -7,20 +8,21 @@ import { LOCALES, useTranslations, type Lang } from "@/i18n";
 
 const t = useTranslations(Astro.currentLocale as Lang);
 
-const { title="" } = Astro.props
-const { description="" } = Astro.props ;
-
+const { title = "" } = Astro.props;
+const { description = "" } = Astro.props;
 ---
 
 <!doctype html>
 <html lang={LOCALES[Astro.currentLocale as string].lang}>
-    <head>
-        <BaseHead title={SITE_TITLE+" - "+t(title)} description={t(description)} />
-    </head>
-    <body class="bg-gray-900 text-white">
+    <BaseHead
+        title={SITE_TITLE + " - " + t(title)}
+        description={t(description)}
+    />
+
+    <body class="bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-200">
         <Header />
         <main class="container mx-auto px-4 py-8">
-            <slot></slot>
+            <slot />
         </main>
         <Footer />
     </body>
