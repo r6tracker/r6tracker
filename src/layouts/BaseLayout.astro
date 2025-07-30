@@ -14,6 +14,16 @@ const { description = "" } = Astro.props;
 
 <!doctype html>
 <html lang={LOCALES[Astro.currentLocale as string].lang}>
+    <script is:inline>
+        const theme = localStorage.getItem("hs_theme");
+        if (theme === "dark" || (!theme && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+            document.documentElement.classList.add("dark");
+            document.documentElement.classList.remove("light");
+        } else {
+            document.documentElement.classList.add("light");
+            document.documentElement.classList.remove("dark");
+        }
+    </script>
     <script>
         import "preline/dist/preline.js";
     </script>
@@ -23,7 +33,7 @@ const { description = "" } = Astro.props;
         description={t(description)}
     />
 
-    <body class="bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-200">
+    <body class="bg-white dark:bg-slate-900">
         <Header />
         <main class="container mx-auto px-4 py-8">
             <slot />

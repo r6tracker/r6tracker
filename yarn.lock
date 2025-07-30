@@ -500,11 +500,6 @@
   resolved "https://registry.yarnpkg.com/@oslojs/encoding/-/encoding-1.1.0.tgz#55f3d9a597430a01f2a5ef63c6b42f769f9ce34e"
   integrity sha512-70wQhgYmndg4GCPxPPxPGevRKqTIJ2Nh4OkiMWmDAVYsTQ+Ta7Sq+rPevXyXGdzr30/qZBnyOalCszoMxlyldQ==
 
-"@preline/theme-switch@^3.1.0":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/@preline/theme-switch/-/theme-switch-3.1.0.tgz#237b5b557e8bbbda8a4bdca7102917ee3a02e7ee"
-  integrity sha512-Awu7a2bAP0jI7CraFhaVC+RHOxbXG6I8gaZeVb9qmJJ2+IF36JErZ1A8e/RUsgARdTA8514URHQF8KIXfIohug==
-
 "@rollup/pluginutils@^5.1.4":
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/@rollup/pluginutils/-/pluginutils-5.2.0.tgz#eac25ca5b0bdda4ba735ddaca5fbf26bd435f602"
