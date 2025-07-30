@@ -14,6 +14,10 @@ const { description = "" } = Astro.props;
 
 <!doctype html>
 <html lang={LOCALES[Astro.currentLocale as string].lang}>
+    <script>
+        import "preline/dist/preline.js";
+    </script>
+
     <BaseHead
         title={SITE_TITLE + " - " + t(title)}
         description={t(description)}
