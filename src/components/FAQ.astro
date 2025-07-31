@@ -1,0 +1,149 @@
+---
+import type { Lang } from "@/i18n";
+import { useTranslations } from "@/i18n";
+
+const t = useTranslations(Astro.currentLocale as Lang);
+
+const JsonData = `{
+    "faq_title": {
+        "en": "R6 Tracker Frequently Asked Questions",
+        "it": "Domande Frequenti su R6 Tracker",
+        "de": "Häufig gestellte Fragen zu R6 Tracker"
+    },
+    "faq_description": {
+        "en": "Find answers to common questions about R6 Tracker.",
+        "it": "Trova risposte alle domande comuni su R6 Tracker.",
+        "de": "Finden Sie Antworten auf häufig gestellte Fragen zu R6 Tracker."
+    },
+    "faq": [
+        {
+            "question": {
+                "en": "What is R6 Tracker?",
+                "it": "Cos'è R6 Tracker?",
+                "de": "Was ist R6 Tracker?"
+            },
+            "answer": {
+                "en": "R6 Tracker is a tool to track your Rainbow Six Siege stats, match history, and performance.",
+                "it": "R6 Tracker è uno strumento per monitorare le tue statistiche, la cronologia delle partite e le prestazioni in Rainbow Six Siege.",
+                "de": "R6 Tracker ist ein Tool, um deine Rainbow Six Siege Statistiken, Match-Historie und Leistung zu verfolgen."
+            }
+        },
+        {
+            "question": {
+                "en": "How do I use R6 Tracker?",
+                "it": "Come si usa R6 Tracker?",
+                "de": "Wie benutze ich R6 Tracker?"
+            },
+            "answer": {
+                "en": "Simply enter your Ubisoft username to view your stats and recent matches.",
+                "it": "Inserisci semplicemente il tuo nome utente Ubisoft per visualizzare le tue statistiche e le partite recenti.",
+                "de": "Gib einfach deinen Ubisoft-Benutzernamen ein, um deine Statistiken und letzten Matches anzuzeigen."
+            }
+        },
+        {
+            "question": {
+                "en": "Is R6 Tracker free to use?",
+                "it": "R6 Tracker è gratuito?",
+                "de": "Ist R6 Tracker kostenlos?"
+            },
+            "answer": {
+                "en": "Yes, R6 Tracker is completely free to use.",
+                "it": "Sì, R6 Tracker è completamente gratuito.",
+                "de": "Ja, R6 Tracker ist völlig kostenlos."
+            }
+        },
+        {
+            "question": {
+                "en": "How often are stats updated?",
+                "it": "Ogni quanto vengono aggiornate le statistiche?",
+                "de": "Wie oft werden die Statistiken aktualisiert?"
+            },
+            "answer": {
+                "en": "Stats are updated in real-time or shortly after each match.",
+                "it": "Le statistiche vengono aggiornate in tempo reale o poco dopo ogni partita.",
+                "de": "Die Statistiken werden in Echtzeit oder kurz nach jedem Match aktualisiert."
+            }
+        },
+        {
+            "question": {
+                "en": "Is my data safe with R6 Tracker?",
+                "it": "I miei dati sono al sicuro con R6 Tracker?",
+                "de": "Sind meine Daten bei R6 Tracker sicher?"
+            },
+            "answer": {
+                "en": "Yes, we only use public data and do not store sensitive information.",
+                "it": "Sì, utilizziamo solo dati pubblici e non memorizziamo informazioni sensibili.",
+                "de": "Ja, wir verwenden nur öffentliche Daten und speichern keine sensiblen Informationen."
+            }
+        }
+    ]
+}`;
+
+const data = JSON.parse(JsonData);
+---
+
+<!-- FAQ -->
+<div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+    <!-- Title -->
+    <div class="max-w-2xl mx-auto text-center mb-10 lg:mb-14">
+        <h2
+            class="text-2xl font-bold md:text-4xl md:leading-tight dark:text-white"
+        >
+            {t(data.faq_title)}
+        </h2>
+        <p class="mt-1 text-gray-600 dark:text-neutral-400">
+            {t(data.faq_description)}
+        </p>
+    </div>
+    <!-- End Title -->
+
+    <div class="max-w-2xl mx-auto">
+        <!-- Accordion -->
+        <div class="hs-accordion-group">
+            {
+                data.faq.map((item: any, i: number) => (
+                    <div
+                        class={`hs-accordion hs-accordion-active:bg-gray-100 rounded-xl p-6 dark:hs-accordion-active:bg-white/10 ${i === 0 ? "active" : ""}`}
+                        id={`hs-a-${i}`}
+                    >
+                        <button
+                            class="hs-accordion-toggle group pb-3 inline-flex items-center justify-between gap-x-3 w-full md:text-lg font-semibold text-start text-gray-800 rounded-lg transition hover:text-gray-500 focus:outline-hidden focus:text-gray-500 dark:text-neutral-200 dark:hover:text-neutral-400 dark:focus:text-neutral-400"
+                            aria-expanded={i === 0}
+                            aria-controls={`hs-c-${i}`}
+                        >
+                            {t(item.question)}
+                            <svg
+                                class="hs-accordion-active:hidden block shrink-0 size-5 text-gray-600 group-hover:text-gray-500 dark:text-neutral-400"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                viewBox="0 0 24 24"
+                            >
+                                <path d="m6 9 6 6 6-6" />
+                            </svg>
+                            <svg
+                                class="hs-accordion-active:block hidden shrink-0 size-5 text-gray-600 group-hover:text-gray-500 dark:text-neutral-400"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                viewBox="0 0 24 24"
+                            >
+                                <path d="m18 15-6-6-6 6" />
+                            </svg>
+                        </button>
+                        <div
+                            id={`hs-c-${i}`}
+                            class={`hs-accordion-content w-full overflow-hidden transition-[height] duration-300 ${i === 0 ? "" : "hidden"}`}
+                        >
+                            <p class="text-gray-800 dark:text-neutral-200">
+                                {t(item.answer)}
+                            </p>
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+        <!-- End Accordion -->
+    </div>
+</div>
+<!-- End FAQ -->
