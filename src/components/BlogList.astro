@@ -1,46 +1,47 @@
+
 ---
 import { DEFAULT_LOCALE } from "@/i18n";
-import { getEntry } from "astro:content";
 import { getCollection } from "astro:content";
 import { getRelativeLocaleUrl } from "astro:i18n";
-import { getFileNameFromPath,getLangFromPath } from "@/common";
+import { getFileNameFromPath, getLangFromPath } from "@/common";
 import { Image } from 'astro:assets';
 
 const currentLocale = Astro.currentLocale || DEFAULT_LOCALE;
-
 const blog = await getCollection("blog");
 
 const posts = blog
-    .filter((post) => getLangFromPath(post.filePath) === currentLocale)
-    .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+  .filter((post) => getLangFromPath(post.filePath) === currentLocale)
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 ---
-<div class="max-w-4xl mx-auto bg-gray-900 text-gray-100 my-4">
-    <ul class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {posts.map((post) => (
-            <li class="flex flex-col bg-gray-800 rounded-lg shadow-md overflow-hidden">
-                {post.data.image && (
-                    <a href={getRelativeLocaleUrl(currentLocale, `/blog/${getFileNameFromPath(post.filePath) ?? ""}`)}>
-                        <Image
-                            src={post.data.image}
-                            alt={post.data.title}
-                            class="w-full h-48 object-cover"
-                            loading="lazy"
-                        />
-                    </a>
-                )}
-                <div class="p-5 flex flex-col flex-1">
-                    <a
-                        href={getRelativeLocaleUrl(currentLocale, `/blog/${getFileNameFromPath(post.filePath) ?? ""}`)}
-                        class="block text-gray-100 font-semibold text-lg hover:underline underline-offset-8 decoration-blue-400 decoration-2 mb-2"
-                        title={post.data.title}
-                    >
-                        {post.data.title}
-                    </a>
-                    <span class="text-sm text-gray-400 font-mono mt-auto">
-                        {new Date(post.data.date).toLocaleDateString()}
-                    </span>
-                </div>
-            </li>
-        ))}
-    </ul>
+
+<div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+
+  <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10 lg:mb-14">
+    {posts.map((post) => (
+      <a
+        class="group flex flex-col bg-white border border-gray-200 shadow-2xs rounded-xl hover:shadow-md focus:outline-hidden focus:shadow-md transition dark:bg-neutral-900 dark:border-neutral-800"
+        href={getRelativeLocaleUrl(currentLocale, `/blog/${getFileNameFromPath(post.filePath) ?? ""}`)}
+      >
+        {post.data.image && (
+          <div class="aspect-w-16 aspect-h-9">
+            <Image
+              src={post.data.image}
+              alt={post.data.title}
+              class="w-full object-cover rounded-t-xl"
+              loading="lazy"
+            />
+          </div>
+        )}
+        <div class="p-4 md:p-5">
+          <p class="mt-2 text-xs uppercase text-gray-600 dark:text-neutral-400">
+            Blog
+          </p>
+          <h3 class="mt-2 text-lg font-medium text-gray-800 group-hover:text-blue-600 dark:text-neutral-300 dark:group-hover:text-white">
+            {post.data.title}
+          </h3>
+        </div>
+      </a>
+    ))}
+  </div>
+
 </div>

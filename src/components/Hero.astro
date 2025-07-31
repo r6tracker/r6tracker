@@ -1,0 +1,90 @@
+---
+import { useTranslations, type Lang } from "@/i18n";
+const t = useTranslations(Astro.currentLocale as Lang);
+
+const JsonData = `
+{
+    "h1": {
+        "en": "Welcome to R6 Tracker",
+        "it": "Benvenuto su R6 Tracker",
+        "de": "Willkommen bei R6 Tracker"
+    },
+    "h2":{
+        "en": "Track your Rainbow Six Siege stats and improve your game",
+        "it": "Monitora le tue statistiche di Rainbow Six Siege e migliora il tuo gioco",
+        "de": "Verfolgen Sie Ihre Rainbow Six Siege Statistiken und verbessern Sie Ihr Spiel"
+    }
+}
+`;
+
+const data = JSON.parse(JsonData);
+---
+
+<section id="track-button" class="relative overflow-hidden py-20 sm:py-24 md:py-32">
+    <div class="container px-4 sm:px-6">
+        <div class="mx-auto flex max-w-5xl flex-col items-center">
+            <div class="z-10 flex flex-col items-center gap-6 text-center w-full">
+                <div class="w-full">
+                    <h1 class="mb-4 sm:mb-6 text-pretty text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold">
+                        {t(data.h1)}
+                    </h1>
+                    <p class="text-zinc-600 text-base sm:text-lg md:text-xl">
+                        {t(data.h2)}
+                    </p>
+                </div>
+                <div class="mt-4 flex flex-col sm:flex-row w-full justify-center gap-2 sm:gap-2">
+                    <select
+                        class="h-10 px-4 rounded-md bg-zinc-900 text-white border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 transition-colors w-full sm:w-auto"
+                    >
+                        <option value="ubisoft">Ubisoft</option>
+                        <option value="playstation">PlayStation</option>
+                        <option value="xbox">Xbox</option>
+                    </select>
+                    <input
+                        type="text"
+                        placeholder={t({
+                            en: "Enter your R6 username",
+                            it: "Inserisci il tuo nome utente R6",
+                            de: "Gib deinen R6 Benutzernamen ein",
+                        })}
+                        class="h-10 px-4 rounded-md bg-zinc-900 text-white border border-zinc-700 w-full sm:w-80 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 transition-colors"
+                    />
+                    <button name="goBtn"
+                        class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-zinc-900 text-white hover:bg-zinc-900/90 h-10 px-4 py-2 w-full sm:w-auto"
+                    >
+                        Get Started
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script is:inline>
+
+    const goBtn = document.querySelector("#track-button button[name='goBtn']");
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+        e.preventDefault();
+        goBtn.click(); // 手动触发 click 事件
+        }
+    });
+    document
+        .querySelector("#track-button button")
+        .addEventListener("click", function () {
+            const platform = document.querySelector(
+                "#track-button select",
+            ).value;
+            const username = document
+                .querySelector('#track-button input[type="text"]')
+                .value.trim();
+            if (username) {
+                let platformPath =
+                    platform === "playstation"
+                        ? "psn"
+                        : platform === "xbox"
+                          ? "xbl"
+                          : "uplay";
+                window.location.href = `https://r6.tracker.network/r6siege/profile/${platformPath}/${encodeURIComponent(username)}/overview`;
+            }
+        });
+</script>

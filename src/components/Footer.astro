@@ -7,18 +7,18 @@ const t = useTranslations(Astro.currentLocale as Lang);
 const today = new Date();
 ---
 
-<footer class="bg-gray-800 py-8">
+<footer class=" py-8">
         <div class="container mx-auto px-4">
                 <div class="flex flex-col md:flex-row items-center justify-between">
                         <div class="flex items-center space-x-2 mb-4 md:mb-0">
                                 <div class="bg-red-600 w-8 h-8 rounded-full flex items-center justify-center">
-                                        <span class="font-bold text-white">R6</span>
+                                        <span class="font-bold ">R6</span>
                                 </div>
-                                <h3 class="text-xl font-bold text-white">R6 Tracker</h3>
+                                <h3 class="text-xl font-bold">R6 Tracker</h3>
                         </div>
                         <ul class="flex space-x-6 text-gray-400">
                                 <li>
-                                        <a href="/privacy/" class="hover:text-white transition-colors">
+                                        <a href="/privacy/" class=" transition-colors">
                                                 {t({
                                                         en: "Privacy Policy",
                                                         it: "Informativa sulla privacy",
@@ -27,7 +27,7 @@ const today = new Date();
                                         </a>
                                 </li>
                                 <li>
-                                        <a href="/terms/" class="hover:text-white transition-colors">
+                                        <a href="/terms/" class=" transition-colors">
                                                 {t({
                                                         en: "Terms of Service",
                                                         it: "Termini di servizio",
