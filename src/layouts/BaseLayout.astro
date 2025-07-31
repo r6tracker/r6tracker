@@ -28,15 +28,12 @@ const { description = "" } = Astro.props;
             document.documentElement.classList.remove("dark");
         }
     </script>
-    <script>
-        import "preline/dist/preline.js";
-    </script>
     <BaseHead
         title={SITE_TITLE + " - " + t(title)}
         description={t(description)}
     />
 
-    <body class="bg-white dark:bg-slate-900 text-gray-800 dark:text-gray-200 transition-all duration-1000">
+    <body class="bg-white dark:bg-slate-900 text-gray-800 dark:text-gray-200 transition-colors">
         <Header />
         <main class="container mx-auto px-4 py-8">
             <slot />

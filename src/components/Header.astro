@@ -41,33 +41,49 @@ const path = Astro.url.pathname.replace(/^\/[a-z]{2}(?:-[A-Z]{2})?\//, "/");
       </nav>
 
       <div class="flex items-center space-x-3">
-        <select
-          class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 text-sm rounded-md px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-sky-500"
-          aria-label="Select language"
-          onchange={`window.location.href = this.value`}
-        >
-          {
-            Object.keys(LOCALES_SETTING).map((l) => {
-              const target = getRelativeLocaleUrl(l as any, path || "/");
-              return (
-                <option value={target} selected={l === locale}>
-                  {LOCALES_SETTING[l as keyof typeof LOCALES_SETTING].label}
-                </option>
-              );
-            })
-          }
-        </select>
+        <div class="relative">
+          <select
+            class="appearance-none bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 text-sm rounded-md px-3 py-1.5 pr-8 focus:outline-none focus:ring-2 focus:ring-sky-500 transition-colors duration-200 shadow-sm hover:border-sky-400 dark:hover:border-sky-500"
+            aria-label="Select language"
+            onchange={`window.location.href = this.value`}
+          >
+            {
+              Object.keys(LOCALES_SETTING).map((l) => {
+          const target = getRelativeLocaleUrl(l as any, path || "/");
+          return (
+            <option value={target} selected={l === locale}>
+              {LOCALES_SETTING[l as keyof typeof LOCALES_SETTING].label}
+            </option>
+          );
+              })
+            }
+          </select>
+          <span class="pointer-events-none absolute inset-y-0 right-2 flex items-center text-slate-400 dark:text-slate-500">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </div>
+
+        
 
         <button
           type="button"
-          class="hs-dark-mode-active:hidden block hs-dark-mode font-medium text-gray-800 rounded-full hover:bg-gray-200 focus:outline-hidden focus:bg-gray-200 dark:text-neutral-200 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800"
-          data-hs-theme-click-value="dark"
+          class="relative font-medium text-gray-800 rounded-full px-1 hover:bg-gray-200 focus:outline-hidden focus:bg-gray-200 dark:text-neutral-200 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800"
+          aria-label="Toggle dark mode"
+          onclick={`
+            if(document.documentElement.classList.contains('dark')){
+              document.documentElement.classList.remove('dark');
+              localStorage.setItem('hs_theme', 'light');
+            }else{
+              document.documentElement.classList.add('dark');
+              localStorage.setItem('hs_theme', 'dark');
+            }
+          `}
         >
-          <span
-            class="group inline-flex shrink-0 justify-center items-center size-9"
-          >
+          <span class="group inline-flex shrink-0 justify-center items-center size-9">
             <svg
-              class="shrink-0 size-4"
+              class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 size-4 transition-opacity duration-200 dark:opacity-0 opacity-100"
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"
@@ -80,18 +96,8 @@ const path = Astro.url.pathname.replace(/^\/[a-z]{2}(?:-[A-Z]{2})?\//, "/");
             >
               <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
             </svg>
-          </span>
-        </button>
-        <button
-          type="button"
-          class="hs-dark-mode-active:block hidden hs-dark-mode font-medium text-gray-800 rounded-full hover:bg-gray-200 focus:outline-hidden focus:bg-gray-200 dark:text-neutral-200 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800"
-          data-hs-theme-click-value="light"
-        >
-          <span
-            class="group inline-flex shrink-0 justify-center items-center size-9"
-          >
             <svg
-              class="shrink-0 size-4"
+              class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 size-4 transition-opacity duration-200 opacity-0 dark:opacity-100"
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"

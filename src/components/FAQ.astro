@@ -1,7 +1,6 @@
 ---
 import type { Lang } from "@/i18n";
 import { useTranslations } from "@/i18n";
-
 const t = useTranslations(Astro.currentLocale as Lang);
 
 const JsonData = `{
@@ -82,6 +81,9 @@ const JsonData = `{
 const data = JSON.parse(JsonData);
 ---
 
+<script>
+    import "@preline/accordion/index.js";
+</script>
 <!-- FAQ -->
 <div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
     <!-- Title -->
@@ -146,4 +148,4 @@ const data = JSON.parse(JsonData);
         <!-- End Accordion -->
     </div>
 </div>
-<!-- End FAQ -->
+
