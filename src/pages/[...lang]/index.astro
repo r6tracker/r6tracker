@@ -4,6 +4,7 @@ import { useTranslations, type Lang } from "@/i18n";
 import Layout from "@/layouts/BaseLayout.astro";
 import BlogList from "@/components/BlogList.astro";
 import Hero from "@/components/Hero.astro";
+import TopUsers from "@/components/TopUsers.astro";
 import FAQ from "@/components/FAQ.astro";
 const t = useTranslations(Astro.currentLocale as Lang);
 export const getStaticPaths = async () => {
@@ -34,6 +35,8 @@ const description = {
 <Layout title={title} description={description}>
 
     <Hero />
+    
+    <TopUsers />
     
     <FAQ/>
 

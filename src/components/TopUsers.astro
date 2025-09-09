@@ -1,0 +1,167 @@
+---
+import type { Lang } from "@/i18n";
+import { useTranslations } from "@/i18n";
+const t = useTranslations(Astro.currentLocale as Lang);
+
+const JsonData = `{
+    "top_users_title": {
+        "en": "Top R6 Players",
+        "it": "Migliori Giocatori R6",
+        "de": "Top R6 Spieler"
+    },
+    "top_users_description": {
+        "en": "Discover the most skilled Rainbow Six Siege players and their impressive stats",
+        "it": "Scopri i giocatori di Rainbow Six Siege più abili e le loro statistiche impressionanti",
+        "de": "Entdecken Sie die talentiertesten Rainbow Six Siege Spieler und ihre beeindruckenden Statistiken"
+    },
+    "view_profile": {
+        "en": "View Profile",
+        "it": "Visualizza Profilo",
+        "de": "Profil Anzeigen"
+    },
+    "top_users": [
+        {
+            "username": "Pengu",
+            "platform": "uplay",
+            "rank": "Champion",
+            "mmr": "15,247",
+            "kd": "1.42",
+            "winrate": "68%"
+        },
+        {
+            "username": "Canadian",
+            "platform": "uplay",
+            "rank": "Champion",
+            "mmr": "14,892",
+            "kd": "1.38",
+            "winrate": "65%"
+        },
+        {
+            "username": "Fabian",
+            "platform": "uplay", 
+            "rank": "Champion",
+            "mmr": "14,756",
+            "kd": "1.35",
+            "winrate": "64%"
+        },
+        {
+            "username": "Goga",
+            "platform": "uplay",
+            "rank": "Champion", 
+            "mmr": "14,623",
+            "kd": "1.33",
+            "winrate": "63%"
+        },
+        {
+            "username": "Kanto",
+            "platform": "uplay",
+            "rank": "Champion",
+            "mmr": "14,512", 
+            "kd": "1.31",
+            "winrate": "62%"
+        },
+        {
+            "username": "Joystick",
+            "platform": "uplay",
+            "rank": "Champion",
+            "mmr": "14,401",
+            "kd": "1.29", 
+            "winrate": "61%"
+        }
+    ]
+}`;
+
+const data = JSON.parse(JsonData);
+
+// Function to get platform path for tracker URL
+function getPlatformPath(platform: string): string {
+    switch (platform) {
+        case 'playstation':
+            return 'psn';
+        case 'xbox':
+            return 'xbl';
+        default:
+            return 'uplay';
+    }
+}
+---
+
+<!-- Top Users Section -->
+<section class="py-16 bg-gray-50 dark:bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Section Header -->
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-gray-900 dark:text-white sm:text-4xl">
+                {t(data.top_users_title)}
+            </h2>
+            <p class="mt-4 text-xl text-gray-600 dark:text-gray-300">
+                {t(data.top_users_description)}
+            </p>
+        </div>
+
+        <!-- Users Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {data.top_users.map((user: any, index: number) => (
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
+                    {/* User Header */}
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                                {index + 1}
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                                    {user.username}
+                                </h3>
+                                <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200">
+                                    {user.rank}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Stats */}
+                    <div class="space-y-3 mb-4">
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-600 dark:text-gray-400">MMR</span>
+                            <span class="text-sm font-semibold text-gray-900 dark:text-white">{user.mmr}</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-600 dark:text-gray-400">K/D Ratio</span>
+                            <span class="text-sm font-semibold text-gray-900 dark:text-white">{user.kd}</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-600 dark:text-gray-400">Win Rate</span>
+                            <span class="text-sm font-semibold text-green-600 dark:text-green-400">{user.winrate}</span>
+                        </div>
+                    </div>
+
+                    {/* View Profile Button */}
+                    <a 
+                        href={`https://r6.tracker.network/r6siege/profile/${getPlatformPath(user.platform)}/${encodeURIComponent(user.username)}/overview`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="w-full inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-colors duration-200"
+                    >
+                        {t(data.view_profile)}
+                    </a>
+                </div>
+            ))}
+        </div>
+
+        {/* View More Link */}
+        <div class="text-center mt-12">
+            <a 
+                href="https://r6.tracker.network/r6siege/leaderboards" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="inline-flex items-center text-purple-600 hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-300 font-medium transition-colors duration-200"
+            >
+                View Complete Leaderboards
+                <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                </svg>
+            </a>
+        </div>
+    </div>
+</section>
