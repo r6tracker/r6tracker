@@ -5,14 +5,14 @@ const t = useTranslations(Astro.currentLocale as Lang);
 
 const JsonData = `{
     "top_users_title": {
-        "en": "Top R6 Players",
-        "it": "Migliori Giocatori R6",
-        "de": "Top R6 Spieler"
+        "en": "Top Rainbow Six Siege Players - R6 Leaderboards & Stats",
+        "it": "Migliori Giocatori Rainbow Six Siege - Leaderboard e Statistiche R6",
+        "de": "Top Rainbow Six Siege Spieler - R6 Bestenlisten & Statistiken"
     },
     "top_users_description": {
-        "en": "Discover the most skilled Rainbow Six Siege players and their impressive stats",
-        "it": "Scopri i giocatori di Rainbow Six Siege più abili e le loro statistiche impressionanti",
-        "de": "Entdecken Sie die talentiertesten Rainbow Six Siege Spieler und ihre beeindruckenden Statistiken"
+        "en": "Explore the elite Rainbow Six Siege competitive scene with our comprehensive leaderboards. Discover top-ranked players, analyze their K/D ratios, win rates, and MMR rankings. Perfect for benchmarking your R6 Siege performance against the best players worldwide.",
+        "it": "Esplora la scena competitiva d'élite di Rainbow Six Siege con le nostre classifiche complete. Scopri i giocatori meglio classificati, analizza i loro rapporti K/D, percentuali di vittoria e classifiche MMR. Perfetto per confrontare le tue prestazioni R6 Siege con i migliori giocatori mondiali.",
+        "de": "Erkunde die Elite der Rainbow Six Siege Wettkampfszene mit unseren umfassenden Bestenlisten. Entdecke top-bewertete Spieler, analysiere ihre K/D-Verhältnisse, Gewinnraten und MMR-Ranglisten. Perfekt zum Benchmarking Ihrer R6 Siege Leistung gegen die besten Spieler weltweit."
     },
     "view_profile": {
         "en": "View Profile",
@@ -157,7 +157,11 @@ function getPlatformPath(platform: string): string {
                 rel="noopener noreferrer"
                 class="inline-flex items-center text-purple-600 hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-300 font-medium transition-colors duration-200"
             >
-                View Complete Leaderboards
+                {t({
+                    en: "View Complete Rainbow Six Siege Leaderboards",
+                    it: "Visualizza Leaderboard Completi Rainbow Six Siege",
+                    de: "Komplette Rainbow Six Siege Bestenlisten Anzeigen"
+                })}
                 <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
                 </svg>

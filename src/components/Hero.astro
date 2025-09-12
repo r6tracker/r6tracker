@@ -5,14 +5,24 @@ const t = useTranslations(Astro.currentLocale as Lang);
 const JsonData = `
 {
     "h1": {
-        "en": "Welcome to R6 Tracker",
-        "it": "Benvenuto su R6 Tracker",
-        "de": "Willkommen bei R6 Tracker"
+        "en": "Rainbow Six Siege Stats Tracker - Analyze Your R6 Performance",
+        "it": "Tracker Statistiche Rainbow Six Siege - Analizza le tue Prestazioni R6",
+        "de": "Rainbow Six Siege Statistiken Tracker - Analysiere deine R6 Leistung"
     },
     "h2":{
-        "en": "Track your Rainbow Six Siege stats and improve your game",
-        "it": "Monitora le tue statistiche di Rainbow Six Siege e migliora il tuo gioco",
-        "de": "Verfolgen Sie Ihre Rainbow Six Siege Statistiken und verbessern Sie Ihr Spiel"
+        "en": "Comprehensive Rainbow Six Siege statistics platform for competitive players. Track your K/D ratio, win rate, operator performance, and match history with real-time R6 stats analytics. Improve your Siege gameplay with detailed performance metrics and competitive insights.",
+        "it": "Piattaforma completa di statistiche Rainbow Six Siege per giocatori competitivi. Monitora il tuo rapporto K/D, percentuale vittorie, prestazioni operatori e cronologia partite con analisi statistiche R6 in tempo reale. Migliora il tuo gameplay Siege con metriche dettagliate delle prestazioni e approfondimenti competitivi.",
+        "de": "Umfassende Rainbow Six Siege Statistikplattform für wettbewerbsorientierte Spieler. Verfolge dein K/D-Verhältnis, Gewinnrate, Operator-Leistung und Spielverlauf mit Echtzeit-R6 Statistikanalysen. Verbessere dein Siege Gameplay mit detaillierten Leistungsmetriken und wettbewerbsorientierten Einblicken."
+    },
+    "placeholder": {
+        "en": "Enter Ubisoft Username",
+        "it": "Inserisci Nome Utente Ubisoft", 
+        "de": "Gib Ubisoft Benutzernamen ein"
+    },
+    "button": {
+        "en": "Track My R6 Stats Now",
+        "it": "Monitora le mie Statistiche R6 Ora",
+        "de": "Verfolge meine R6 Statistiken Jetzt"
     }
 }
 `;
@@ -43,11 +53,7 @@ const data = JSON.parse(JsonData);
                     </select>
                     <input
                         type="text"
-                        placeholder={t({
-                            en: "Enter your R6 username",
-                            it: "Inserisci il tuo nome utente R6",
-                            de: "Gib deinen R6 Benutzernamen ein",
-                        })}
+                        placeholder={t(data.placeholder)}
                         class="h-10 px-4 rounded-md bg-zinc-900 text-white border border-zinc-700 w-full sm:w-80 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 transition-colors
                         dark:bg-zinc-800 dark:text-white dark:border-zinc-600"
                     />
@@ -55,7 +61,7 @@ const data = JSON.parse(JsonData);
                         class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-zinc-900 text-white hover:bg-zinc-900/90 h-10 px-4 py-2 w-full sm:w-auto
                         dark:bg-zinc-800 dark:text-white dark:hover:bg-zinc-700"
                     >
-                        Get Started
+                        {t(data.button)}
                     </button>
                 </div>
             </div>
